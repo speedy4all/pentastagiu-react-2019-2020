@@ -1,4 +1,4 @@
-function ClassRoom(capacity = 32) {
+function ClassRoom(capacity) {
     this.capacity = capacity;
     this.students = [];
 }
@@ -14,10 +14,11 @@ function Person(firstName, lastName) {
 
 const pers1 = new Person('Adin', 'Ober');
 const pers2 = new Person('Bogdan', 'Buescu');
+const pers3 = new Person('Mircea', 'Blendea');
 
 const classRoom = new ClassRoom();
 
 
-classRoom.addStudent(pers1, pers2);
+classRoom.addStudent(pers1, pers2, pers3);
 
 console.log(classRoom);
