@@ -3,7 +3,6 @@
 ///  Application definition  ///
 ///--------------------------///
 
-
 class Message {
 
     static consoleLog(message = []){
@@ -17,7 +16,6 @@ class Message {
 class Product {
 
     constructor(price, fabricationYear){
-
         this.price              = price;
         this.fabricationYear    = fabricationYear;
     }
@@ -31,47 +29,31 @@ class Product {
 class Car extends Product {
 
     constructor(mark, model, color, engine, price, fabricationYear){
-
         super(price, fabricationYear);
-
         this.mark     = mark;
         this.model    = model;
         this.color    = color;
         this.engine   = engine;
     }
 
-    startEngine(){
-        return '⚫';
-    }
+    startEngine(){ return '⚫'; }
 
-    stopEngine(){
-        return '⚪';
-    }
+    stopEngine(){ return '⚪'; }
 
-    goAhead(){
-        return '⇧';
-    }
+    goAhead(){ return '⇧'; }
 
-    goBack(){
-        return '⇩';
-    }
+    goBack(){ return '⇩'; }
 
-    turnRight(){
-        return '⇨';
-    }
+    turnRight(){ return '⇨'; }
 
-    turnLeft(){
-        return '⇦';
-    }
+    turnLeft(){ return '⇦'; }
 }
 
 
 class Toy extends Product {
 
     constructor(type, name, price, fabricationYear, canTalk = false, canWalk = false){
-
         super(price, fabricationYear);
-
         this.type       = type;
         this.name       = name;
         this.currency   = '€';
@@ -96,28 +78,21 @@ class Toy extends Product {
 class Factory {
 
     constructor(type, productsNumber){
-
         this.type           = type;
         this.productsNumber = productsNumber;
         this.products       = [];
     }
 
     startBuildProcess(props = []){
-
         const product = this.type;
-
         for(let i = 0; i < this.productsNumber; i++){
-
             const params = props[Math.floor(Math.random() * props.length)];
-
             this.products.push(new product(...params));
         }
-
         this.finishBuildProcess();
     }
 
     finishBuildProcess(){
-
         Message.consoleLog([
             ' ',
             '|-------------------------------------------',
@@ -127,7 +102,6 @@ class Factory {
             '|-------------------------------------------',
             ' '
         ]);
-
         this.displayProducts();
     }
 
@@ -138,7 +112,6 @@ class Factory {
     updateProduct(id, newProduct = {}){
         const oldProduct = this.products[id];
         this.products[id] = { ...newProduct };
-    
         Message.consoleLog([
             ' ',
             '|-------------------------------------------',
@@ -146,14 +119,12 @@ class Factory {
             '|-------------------------------------------',
             ' '
         ]);
-    
         console.table({ oldProduct, newProduct });
     }
 
     deleteProduct(id){
         const product = this.products[id];
         this.products.splice(id, 1);
-    
         Message.consoleLog([
             ' ',
             '|-------------------------------------------',
@@ -161,11 +132,9 @@ class Factory {
             '|-------------------------------------------',
             ' '
         ]);
-    
         console.table(product);
     }
 }
-
 
 
 
