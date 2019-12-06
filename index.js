@@ -1,30 +1,29 @@
-
-function ClassRoom(capacity = 32) {
-    this.capacity = capacity;
-    this.students = [];
+function ClassRoom(capacity=24){
+    this.capacity=capacity;
+    this.students=[];
 }
 
-ClassRoom.prototype.addStudent = function(student = {}) {
-   if(this.students.length >= this.capacity) {
-        console.log(`Sorry! Class is full`);
-        return;
-   }
-   this.students.push(student);
-   console.log(`Hello ${student.firstName} ! Welcome to class !`);
+ClassRoom.prototype.addStudents = function(student){
+     this.students.push(student);
 }
 
-function Person(firstName, lastName) {
+
+
+function Person(firstName, lastName){
     this.firstName = firstName;
     this.lastName = lastName;
-}
+};
 
-const pers1 = new Person('Bogdan', 'Buescu');
-const pers2 = new Person('Mircea', 'Blendea');
+const pers1= new Person('mircea', 'popovici');
+const pers2 = new Person('bogdan', 'mireanu');
+const pers3= new Person('eduard', 'cosbuc');
 
-const classRoom = new ClassRoom(1);
+const classroom = new ClassRoom();
+const classroom2= new ClassRoom(32);
 
-classRoom.addStudent(pers1);
-classRoom.addStudent(pers2);
+classroom.addStudents(pers1);
+classroom.addStudents(pers2);
+classroom2.addStudents(pers3);
 
-console.table(classRoom.students);
-
+console.log(classroom);
+console.log(classroom2);
