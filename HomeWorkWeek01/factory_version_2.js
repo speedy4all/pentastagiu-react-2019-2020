@@ -185,3 +185,4 @@ Message.consoleLog([
     toyFactory.products[1].talk(),
     toyFactory.products[0].getPrice()
 ]);
+
