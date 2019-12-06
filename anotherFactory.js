@@ -19,6 +19,6 @@ function CarFactory(assemblyType, capacity){
     this.finishedCars = [];
 } 
 
-CarFactory.prototype.startAssembling(props = []){
-    const product = 
+CarFactory.prototype.startAssembling = function(props = []){
+    //const product = 
 }
