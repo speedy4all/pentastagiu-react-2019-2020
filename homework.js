@@ -87,4 +87,4 @@ shoesFactory.makeProduct(
     {measure:'38', forwho:'female'}, {measure:'39', forwho:'female'}, {measure:'40', forwho:'female'},
     {measure:'41', forwho:'male'}, {measure:'42', forwho:'male'}, {measure:'43', forwho:'male'}],
 );
-shoesFactory.cardMessage('You got a new pair of shoes from Santa!');
+shoesFactory.cardMessage('You got a new pair of shoes from Santa Clause!');
