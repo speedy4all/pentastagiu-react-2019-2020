@@ -32,14 +32,14 @@ function Shoes(shoeType, colour, size){
 
 // Define factory function to create a product
 
-function myFactory(type, numberOfProducts){
+function MyFactory(type, numberOfProducts){
     this.productType = type;
     this.numberOfProducts=numberOfProducts;
     this.productList=[];
 
 };
 
-myFactory.prototype.makeProduct = function(configs=[],colours=[], sizes=[], genders=[]){
+MyFactory.prototype.makeProduct = function(configs=[],colours=[], sizes=[], genders=[]){
    const product = this.productType;
    for (let i= 0; i < this.numberOfProducts;i++) {
         const config = configs.returnRandom();
@@ -54,11 +54,7 @@ myFactory.prototype.makeProduct = function(configs=[],colours=[], sizes=[], gend
     
 };
 
-myFactory.prototype.cardMessage = function(mytext){
-    console.log(mytext);
-}
-
-myFactory.prototype.startProduction = function(){
+MyFactory.prototype.startProduction = function(){
     console.log(`
     Production process started for ${this.productType.name}!
     This process ended with a number of ${this.numberOfProducts} products of type ${this.productType.name}.
@@ -67,10 +63,10 @@ myFactory.prototype.startProduction = function(){
     console.table(this.productList);
 }
 
-myFactory.prototype.cardMessage = function(mytext){
+MyFactory.prototype.cardMessage = function(mytext){
     console.log(mytext)
 }
-const tshirtFactory = new myFactory(Tshirt,8);
+const tshirtFactory = new MyFactory(Tshirt,8);
 tshirtFactory.makeProduct(
     ['Metallica','Korn','Eminem', 'Fuego'],
     ['red','blue','yellow','green','pink'],
@@ -79,7 +75,7 @@ tshirtFactory.makeProduct(
 );
 tshirtFactory.cardMessage('You got a new tshirt with you\'re preferred band!');
 
-const shoesFactory = new myFactory(Shoes,10);
+const shoesFactory = new MyFactory(Shoes,10);
 shoesFactory.makeProduct(
    ['sport','casual','mountain','home-use'],
    ['brown', 'black', 'white'],
