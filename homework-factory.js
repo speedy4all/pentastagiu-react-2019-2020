@@ -31,6 +31,11 @@ class Factory {
     console.table(this.products);
   };
 
+  talk = () => {
+    if (this.factoryType.name === "Car") console.log("vrum,vrum");
+    else console.log("does not talk");
+  };
+
   changeFactoryType = newType => {
     this.factoryType = newType;
     this.products = [];
@@ -81,6 +86,8 @@ carFactory.startBuildProcess(
 );
 carFactory.finishBuildProcess();
 
+carFactory.talk();
+
 const shoesFactory = new Factory(Shoes, 5);
 
 shoesFactory.startBuildProcess(
@@ -108,3 +115,5 @@ shoesFactory.startBuildProcess(
 );
 
 shoesFactory.finishBuildProcess();
+
+shoesFactory.talk();
