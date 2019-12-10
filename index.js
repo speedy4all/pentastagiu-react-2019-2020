@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // function classRoom(capacity = 32) {
 //   this.capacity = capacity;
 //   this.students = [];
