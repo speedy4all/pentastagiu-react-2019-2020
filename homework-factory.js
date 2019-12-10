@@ -102,7 +102,7 @@ shoesFactory.startBuildProcess(
   [
     { color: "red", size: "S", material: "eco" },
     { color: "brown", size: "M", material: "leather" },
-    { color: "white", size: "L", material: "eco" },
+    { color: "white", size: "L", material: "synthetic" },
     { color: "red", size: "Xl", material: "leather" }
   ]
 );
