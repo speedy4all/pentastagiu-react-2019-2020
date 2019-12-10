@@ -1,89 +1,85 @@
-// Application definition
-
 /**
  * @returns random element from any array
  */
-Array.prototype.random = function() {
-  return this[Math.floor(Math.random() * this.length)];
+Array.prototype.random = function () {
+	return this[Math.floor(Math.random() * this.length)];
 };
 
 /**
- *
- * @param {string} engine engine type (ex: 'v8')
- * @param {string} color car color (ex: 'red')
+ * @param {string} type ball type (ex: 'tennis ball')
+ * @param {string} color ball color (ex: 'blue')
  */
-function Honda(engine, color) {
-  this.engine = engine;
-  this.color = color;
+function Ball(type, color) {
+	this.type = type;
+	this.color = color;
 }
 
 /**
- *
- * @param {Object} config object {engine, bigTires} used for truck configuration
+ * @param {Object} config object {size, type} used for plush toys configuration
  * @param {string} color truck color (ex: 'grey')
  */
-function Truck(config, color) {
-  this.engine = config.engine;
-  this.bigTires = config.bigTires;
-  this.color = color;
+function PlushToys(config, color) {
+	this.size = config.size;
+	this.type = config.type;
+	this.color = color;
 }
 
 /**
- *
  * @param {function} type a function used to create the product
  */
 function Factory(type) {
-  this.factoryType = type;
-  this.lineSpeed = 10;
-  this.products = [];
+	this.factoryType = type;
+	this.quantity = 5;
+	this.products = [];
 }
 
 /**
  * @param {Array} configs list of configs to be applied to the product
  * @param {Array} props list of props to be applied to the product
  */
-Factory.prototype.startBuildProcess = function(configs = [], props = []) {
-  const product = this.factoryType;
+Factory.prototype.startProduction = function (configs = [], props = []) {
+	const product = this.factoryType;
+	console.log(` - - - Production started for: ${product.name} - - - `);
 
-  for (let i = 0; i < this.lineSpeed; i++) {
-    const config = configs.random();
-    const prop = props.random();
-    this.products.push(new product(config, prop));
-  }
 
-  this.finishBuildProcess();
-};
+	for (let i = 0; i < this.quantity; i++) {
+		const config = configs.random();
+		const prop = props.random();
+		this.products.push(new product(config, prop));
+	}
+
+	this.stopProduction();
+	console.log(` - - - Production stopped for: ${product.name} - - - `);
+}
 
 /**
- * @emits summary of build process
+ * @emits summary of production process
  */
-Factory.prototype.finishBuildProcess = function() {
-  console.log(`
+Factory.prototype.stopProduction = function () {
+	console.log(`
 Production finished for ${this.factoryType.name}
 Total number of products is: ${this.products.length}
     List of ${this.factoryType.name}'s
     `);
-  console.table(this.products);
+	console.table(this.products);
 };
 
+// App functionality
 
-// Application functionality
+const ballFactory = new Factory(Ball);
 
-const carFactory = new Factory(Honda);
+ballFactory.startProduction(
+	["football", "basketball", "tennis ball"],
+	["white", "black", "blue", "orange"]
+)
 
-carFactory.startBuildProcess(
-  ["v4", "v6", "v8"],
-  ["red", "green", "blue", "white"]
+const plushToysFactory = new Factory(PlushToys);
+
+plushToysFactory.startProduction(
+	[
+		{ size: "small", type: "pokemon" },
+		{ size: "medium", type: "cat" },
+		{ size: "big", type: "bear" }
+	],
+	["yellow", "black", "white"]
 );
-
-const truckFactory = new Factory(Truck);
-
-truckFactory.startBuildProcess(
-  [
-    { engine: "V12 Turbo", bigTires: false },
-    { engine: "DT466", bigTires: true },
-    { engine: "RTA96-C", bigTires: true }
-  ],
-  ["green", "black", "grey"]
-);
-
