@@ -32,7 +32,7 @@ Car.prototype.stopEngine = function () {
 }
 
 Car.prototype.paintCar = function (newColour) {
-  return 'The colour of ' + this.Car.carBrand + ' has been changed from ' + this.carBrand.color + ' to ' + newColour;
+  return 'The colour of ${this.Car.carBrand} has been changed from ${this.carBrand.color} to ${newColour}';
 }
 
 Car.prototype.turnTheRadioOn = function () {
@@ -57,16 +57,16 @@ function Toy(type, name, price, currency, colour, age) {
   this.age = age;
 }
 
-Car.prototype.getPrice = function () {
-  return 'The price of ' + this.Toy.name + ' is ' + this.Toy.price + this.Toy.currency;
+Toy.prototype.getPrice = function () {
+  return 'The price of ${this.Toy.name} is ${this.Toy.price} ${this.Toy.currency}';
 }
 
-Car.prototype.buyToy = function () {
-  console.log('I just bought ' + this.Toy.type + ' called ' + this.Toy.name + " for my nephew who is " + age + " years old.");
+Toy.prototype.buyToy = function () {
+  console.log('I just bought ${this.Toy.type} called ${this.Toy.name} for my nephew who is ${age} years old.');
 }
 
-Car.prototype.returnToy = function () {
-  console.log('Just got the refund for the toy I returned: ' + this.Toy.price + this.Toy.currency);
+Toy.prototype.returnToy = function () {
+  console.log('Just got the refund for the toy I returned: ${this.Toy.price} ${this.Toy.currency}.');
 }
 
 /**
