@@ -12,10 +12,30 @@ Array.prototype.random = function() {
       this.dressColor = dressColor;
   }
 
-  function Car(color, hasNoise, canMove) {
+  Doll.prototype.canSing = function(doll) {
+    if(doll.disneyCharacter == "Elsa") {
+      console.log("Let it snow, let it snow...");
+    } else if ( doll.disneyCharacter == "Ariel") {
+      console.log("I wanna be where the people are, I wanna see, wanna see them dancin\'");
+    } else {
+      console.log("Once there was a princess, was the princess you?");
+    }
+  }
+
+  function Mobile(color, hasNoise, type) {
       this.color = color;
       this.hasNoise = hasNoise;
-      this.canMove = canMove;
+      this.type = type;
+  }
+
+  Mobile.prototype.hasNoiseFunction = function(mobile) {
+    if(mobile.type == "car") {
+      console.log("bip bip");
+    } else if (mobile.type == "train") {
+      console.log("ciu ciu");
+    } else {
+      console.log("vrum vrum");
+    }
   }
 
   function Lego(config, numberOfPieces) {
@@ -62,12 +82,12 @@ dollFactory.startBuildProcess(
   ["blue", "green", "white"]
 );
 
-const carFactory = new Factory(Car);
+const mobileFactory = new Factory(Mobile);
 
-carFactory.startBuildProcess(
+mobileFactory.startBuildProcess(
     ["blue", "green", "white"],
     [true, true, false],
-    [true, true, false]
+    ["car", "train", "motocycle"]
 );
 
 const legoFactory = new Factory(Lego);
