@@ -63,18 +63,18 @@ class Factory {
     }
 }
 
-const HollidaysFactory = new Factory(StuffedToy, 6);
-HollidaysFactory.startProduction(
+const hollidaysFactory = new Factory(StuffedToy, 6);
+hollidaysFactory.startProduction(
     ['teddy bear', 'lion', 'panda', 'monkey', 'otter' ],
     ['green', 'brown', 'red', 'yellow'],
     ['Hello', 'Im hungry', 'Put your hands up. This is a robbery']
 );
-HollidaysFactory.getFunctionality(1);
-HollidaysFactory.changeProduction(Fireworks,8);
-HollidaysFactory.startProduction(
+hollidaysFactory.getFunctionality(1);
+hollidaysFactory.changeProduction(Fireworks,8);
+hollidaysFactory.startProduction(
     ['firecrakers', 'smoke bombs', 'bottle rocket', 'flare' ],
     ['very small', 'small', 'medium', 'big'],
     ['Boom', 'Pop', 'Rat-a-tat-a', 'Capow']
 );
-HollidaysFactory.getFunctionality(1);
+hollidaysFactory.getFunctionality(1);
 
