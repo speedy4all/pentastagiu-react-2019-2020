@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const toy = (props) => (
     <div className="Toy">
         <span>{props.model ? props.model : "Nu exista"}</span>
