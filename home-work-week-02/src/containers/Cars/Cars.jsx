@@ -26,6 +26,9 @@ class Cars extends Component {
         };
     }
 
+    /**
+     *  updates the attributes of the new car
+     */
     onInputChangeHandler = (event, inputIdentifier) => {
 
         const oldCarPropreties = {...this.state.newCar};
@@ -34,6 +37,9 @@ class Cars extends Component {
         this.setState({ newCar: oldCarPropreties });
     };
 
+    /**
+     *  create a new car
+     */
     onSumbitHandler = event => {
         event.preventDefault();
         
@@ -60,6 +66,9 @@ class Cars extends Component {
         });
     };
 
+    /**
+     *  delete a car
+     */
     onDeleteCarHandler = id => {
         const index = this.state.cars.findIndex(car => car.id === id);
         const cars = [...this.state.cars];
@@ -68,6 +77,9 @@ class Cars extends Component {
         this.setState({ cars: cars });
     };
 
+    /**
+     *  empty text forms
+     */
     onCancelHandler = () => {
         this.setState({ 
             newCar: {
