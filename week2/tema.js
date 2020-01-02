@@ -22,11 +22,6 @@ function Marvel(toys, size) {
   this.size = size;
 }
 
-function startEngine() {
-  console.log("Start Engine Vrum, vrum, vrum");
-}
-
-startEngine();
 
 /* Starting the process */
 
