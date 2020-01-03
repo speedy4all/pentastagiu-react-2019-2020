@@ -1,0 +1,20 @@
+table, th, tr, td {
+  border: 1px solid;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th {
+  padding: 5px;
+  background-color: blanchedalmond;
+}
+
+td {
+  padding: 10px;
+}
+
+.tableContainer {
+  margin-top: 2rem;
+  align-content: center;
+  text-align: center;
+}
