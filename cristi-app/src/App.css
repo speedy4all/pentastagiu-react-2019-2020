@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+  margin-left: 25%;
+  margin-top: 5%;
+  background-color: royalblue;
+  display: inline-block;
+}
+
+.game-item{
+ margin-top: 5px;
+}
+
+
+span {
+  margin: 5px;
+  align-items: center;
+}
