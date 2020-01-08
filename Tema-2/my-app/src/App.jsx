@@ -32,7 +32,7 @@ export default class App extends React.Component {
    render(){
 
     return (
-      <div className="App">
+      <div className="App-header">
         <div className="phone-container">
           {this.renderPhones()}
         </div>
