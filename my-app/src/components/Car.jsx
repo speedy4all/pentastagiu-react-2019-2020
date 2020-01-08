@@ -5,12 +5,12 @@ class Car extends React.Component {
     render() {
         return (
                 <tr>
-                    <td>{ this.props.carProps.brand?this.props.carProps.brand:'Not stated' }</td>
-                    <td>{ this.props.carProps.fuel?this.props.carProps.fuel:'Not stated' }</td>
-                    <td>{ this.props.carProps.power?this.props.carProps.power:'Not stated' }</td>
-                    <td>{ this.props.carProps.productionYear?this.props.carProps.productionYear:'Not stated' }</td>
-                    <td>{ this.props.carProps.color?this.props.carProps.color:'Not stated' }</td>
-                    <td>{ this.props.carProps.price?this.props.carProps.price:'Not stated' }</td>
+                    <td>{ this.props.brand?this.props.brand:'Not stated' }</td>
+                    <td>{ this.props.fuel?this.props.fuel:'Not stated' }</td>
+                    <td>{ this.props.power?this.props.power:'Not stated' }</td>
+                    <td>{ this.props.productionYear?this.props.productionYear:'Not stated' }</td>
+                    <td>{ this.props.color?this.props.color:'Not stated' }</td>
+                    <td>{ this.props.price?this.props.price:'Not stated' }</td>
                 </tr>
         )
     }

@@ -30,7 +30,7 @@ import './App.css';
               </tr>
             </thead>
             <tbody>
-              { this.state.carList.map(car => <Car key = { car.id } carProps={car} /> ) }
+              { this.state.carList.map(car => <Car key = { car.id } {...car} /> ) }
             </tbody>
           </table>
         </div>
