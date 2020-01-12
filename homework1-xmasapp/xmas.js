@@ -130,5 +130,5 @@ doll.bio();
 const newCarFactory = new Factory(Honda);
 newCarFactory.modifyProduction();
 
-const newCar = new Honda;
+const newCar = new Honda();
 newCar.startEngine();
