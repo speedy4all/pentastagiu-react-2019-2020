@@ -66,7 +66,6 @@ Total number of products is: ${this.products.length}
   console.table(this.products);
 };
 
-
 // Application functionality
 
 const carFactory = new Factory(Honda);
@@ -86,4 +85,3 @@ truckFactory.startBuildProcess(
   ],
   ["green", "black", "grey"]
 );
-

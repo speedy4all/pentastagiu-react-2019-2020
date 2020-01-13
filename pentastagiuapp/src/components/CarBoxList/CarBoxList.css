@@ -1,0 +1,9 @@
+.carBoxList {
+  padding: 50px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}

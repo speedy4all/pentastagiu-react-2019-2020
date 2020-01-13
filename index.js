@@ -1,30 +1,57 @@
+<<<<<<< HEAD
+// function classRoom(capacity = 32) {
+//   this.capacity = capacity;
+//   this.students = [];
+// }
 
-function ClassRoom(capacity = 32) {
-    this.capacity = capacity;
-    this.students = [];
+// classRoom.prototype.addStudent = function(student = {}) {
+//   this.students.push(student);
+// };
+
+// function Person(firstName, lastName) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+// }
+
+// const pers1 = new Person("Bogdan", "Bunescu");
+// const pers2 = new Person("Mircea", "Blendea");
+
+// const classRoom1 = new classRoom(3);
+// const classRoom2 = new classRoom();
+
+// classRoom1.addStudent(pers1);
+// classRoom1.addStudent(pers2);
+
+// classRoom2.addStudent(pers1);
+// classRoom2.addStudent(pers2);
+
+// console.log(classRoom1);
+// console.log(classRoom2);
+
+class Utils {
+  constructor(start = 0) {
+    this.current = start;
+  }
+
+  increment() {
+    console.log(++this.current);
+  }
+
+  showThis() {
+    console.log(this);
+  }
 }
 
-ClassRoom.prototype.addStudent = function(student = {}) {
-   if(this.students.length >= this.capacity) {
-        console.log(`Sorry! Class is full`);
-        return;
-   }
-   this.students.push(student);
-   console.log(`Hello ${student.firstName} ! Welcome to class !`);
-}
+const utils = new Utils();
 
-function Person(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-}
+utils.increment();
+utils.increment();
+utils.showThis();
 
-const pers1 = new Person('Bogdan', 'Buescu');
-const pers2 = new Person('Mircea', 'Blendea');
+utils.increment.apply({ current: 4 });
 
-const classRoom = new ClassRoom(1);
+utils.increment();
 
-classRoom.addStudent(pers1);
-classRoom.addStudent(pers2);
+utils.increment.call({ current: 100 });
 
-console.table(classRoom.students);
-
+utils.showThis();
