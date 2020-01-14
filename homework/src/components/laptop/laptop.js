@@ -5,7 +5,7 @@ class Laptop extends Component {
     const { name, description, color, price } = this.props;
 
     return (
-      <div className="card mb-2" style={{ width: "18rem" }}>
+      <div className="card mx-2 my-2" style={{ width: "18vw" }}>
         <div className="card-header text-warning text-center font-weight-bold">
           {name}
         </div>

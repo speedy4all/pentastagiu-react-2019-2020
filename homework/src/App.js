@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import Header from "./components/header";
-import Laptops from "./components/laptops";
+import "./App.css";
+
+import Header from "./components/header/header";
+import Laptops from "./components/laptops/laptops";
 
 class App extends Component {
   state = {
@@ -14,19 +16,17 @@ class App extends Component {
 
     return (
       <div className="container">
-        <Header branding="HomeWork Week3" />
-        <div className="text-center my-2">
+        <Header branding="Laptop Store" headline="Super Price" />
+        <div className="text-center my-3">
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-outline-info btn-sm "
             onClick={this.onShowClick}
           >
-            Show Laptops
+            Show Products
           </button>
         </div>
-        <div className="d-flex flex-row justify-content-center align-items-center mt-5">
-          {showInfo ? <Laptops /> : null}
-        </div>
+        <div className="col-sm-6">{showInfo ? <Laptops /> : null}</div>
       </div>
     );
   }
