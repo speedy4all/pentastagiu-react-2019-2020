@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-import CarBox from "./components/CarBox";
+import Box from "./components/Box";
 import "./App.css";
+import Cart from "./components/Cart";
 
 export default class App extends Component {
   render() {
-    return <CarBox />;
+    return (
+      <div className="App">
+        <Box />
+        <Cart />
+      </div>
+    );
   }
 }

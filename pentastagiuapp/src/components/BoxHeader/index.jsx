@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import "./CarBoxHeader.css";
+import "./BoxHeader.css";
 
-export default class CarBoxHeader extends Component {
+export default class BoxHeader extends Component {
   render() {
     const { title, logo } = this.props;
     return (
-      <div className="carBoxHeader">
-        <div className="carBoxHeader__title">
+      <div className="BoxHeader">
+        <div className="BoxHeader__title">
           <h1>{title}</h1>
         </div>
-        <div className="carBoxHeader__logo">
+        <div className="BoxHeader__logo">
           <img src={logo} alt="logo" />
         </div>
       </div>

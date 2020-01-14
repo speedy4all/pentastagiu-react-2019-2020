@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Car from "../Car";
-import "./CarBoxList.css";
+import "./BoxList.css";
 
-export default class CarBoxList extends Component {
+export default class BoxList extends Component {
   constructor() {
     super();
     this.state = {
@@ -76,6 +76,6 @@ export default class CarBoxList extends Component {
   render() {
     if (!this.state.carsLoaded)
       return <div className="loading">Loading...</div>;
-    return <div className="carBoxList">{this.renderCarList()}</div>;
+    return <div className="BoxList">{this.renderCarList()}</div>;
   }
 }
