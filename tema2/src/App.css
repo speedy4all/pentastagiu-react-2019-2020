@@ -1,0 +1,76 @@
+.App {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /*flex-wrap: wrap;*/
+}
+.phones-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.covers-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.phones-item{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 300px;
+}
+.covers-item{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 500px;
+}
+button {
+  margin-top: 10px;
+  box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+	background-color:#eae0c2;
+	border-radius:15px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:12px 16px;
+	text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+  outline: 0;
+}
+button:hover {
+  background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+	background-color:#ccc2a6;
+}
+
+.phones-item img {
+  /*border: 1px solid #333;*/
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 10px;
+  height: 200px;
+  width: 150px;
+}
+
+.covers-item img{
+ /* border: 1px solid #333;*/
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 10px;
+  height: 200px;
+  width: 200px;
+}
