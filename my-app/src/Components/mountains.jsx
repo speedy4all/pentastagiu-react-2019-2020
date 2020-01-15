@@ -1,8 +1,8 @@
 import React from 'react';
 export class Mountain extends React.Component{
-    constructor(props) {
+ /*   constructor(props) {
         super(props);
-    }
+    }*/
     render() {
         return(
         <div className="mountain-item">
