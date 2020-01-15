@@ -1,0 +1,9 @@
+.CartList {
+  padding: 25px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
