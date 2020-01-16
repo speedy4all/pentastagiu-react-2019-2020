@@ -13,14 +13,14 @@ td {
   padding: 10px;
 }
 
-.listContainer {
+.list-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap-reverse;
   margin-top: 10rem;
 }
 
-.tableContainer {
+.table-container {
   margin: 10px 30px;
   align-content: center;
   text-align: center;

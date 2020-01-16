@@ -40,8 +40,8 @@ import './App.css';
       return (
         <>
         <Header {...this.state.titleList} />
-        <div className='listContainer'>
-          <div className='tableContainer'>
+        <div className='list-container'>
+          <div className='table-container'>
             { this.state.carListLoading?<p>Loading...</p>:(
               <table>
                 <thead> 
@@ -59,7 +59,7 @@ import './App.css';
                 </tbody>
               </table>)}
           </div>
-          <div className='tableContainer'>
+          <div className='table-container'>
             { this.state.carListLoading?<p>Loading...</p>:(
               <table>
                 <thead> 
