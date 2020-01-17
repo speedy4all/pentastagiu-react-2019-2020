@@ -9,7 +9,7 @@ class App extends React.Component {
   render () {
     return (
       <div className="App">
-        <Header />
+        <Header logo={"/images/logo.png"} title={"Dacia"} subtitle={"Fiabilitate inainte de toate"} />
         <Cars />
       </div>
     );
