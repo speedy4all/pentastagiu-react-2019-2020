@@ -11,10 +11,12 @@ Array.prototype.random = function() {
  *
  * @param {string} engine engine type (ex: 'v8')
  * @param {string} color car color (ex: 'red')
+ * @param {integer} age car age (ex: 10)
  */
-function Honda(engine, color) {
+function Honda(engine, color, age) {
   this.engine = engine;
   this.color = color;
+  this.age = age;
 }
 
 /**
@@ -46,8 +48,8 @@ Factory.prototype.startBuildProcess = function(configs = [], props = []) {
   const product = this.factoryType;
 
   for (let i = 0; i < this.lineSpeed; i++) {
-    const config = configs.random();
-    const prop = props.random();
+    const config = configs[i];
+    const prop =props[i];
     this.products.push(new product(config, prop));
   }
 
