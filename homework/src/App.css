@@ -1,0 +1,5 @@
+.btn-outline-info,
+.btn-outline-info:hover {
+  border: 0 !important;
+  outline: 0 none !important;
+}
