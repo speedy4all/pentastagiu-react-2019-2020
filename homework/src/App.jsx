@@ -1,5 +1,5 @@
 import React from 'react';
-import Cars from './components/Cars';
+import Cars from './components/CarList/Cars';
 import Header from './components/Header';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
