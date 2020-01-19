@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class Toy extends React.Component {
+export class Item extends React.Component {
   constructor(props) {
     super(props);
   }

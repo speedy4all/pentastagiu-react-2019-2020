@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
 import { render } from '@testing-library/react';
-import { Toy } from './components/ToyItem';
+import { Item } from './components/Item';
 import Header from './components/Header';
 import CartItem from './components/CartItem';
-
 
 export default class App extends React.Component {
 
@@ -12,9 +11,9 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      header: [],
-      toys: [],
-      cart: [],
+      headerList: [],
+      itemList: [],
+      cartList: [],
       loader: false
     }
   }
@@ -22,8 +21,8 @@ export default class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        header: [{ title: "Unicorn Land", subtitle: "Kids fav place" }],
-        toys: [
+        headerList: [{ title: "Unicorn Land", subtitle: "Kids fav place" }],
+        itemList: [
           { id: 1, name: "Doll", recommendedAge: 5, recommendedGender: "girl", price: 30 },
           { id: 2, name: "Train", recommendedAge: 4, recommendedGender: "boy", price: 12 },
           { id: 3, name: "Ball", recommendedAge: 6, price: 30 },
@@ -31,7 +30,7 @@ export default class App extends React.Component {
           { id: 5, name: "Teddy bear", recommendedAge: 3, price: 30 },
           { id: 6, name: "Kite", recommendedAge: 10, price: 30 }
         ],
-        cart: [
+        cartList: [
           { name: "Doll", price: 30 },
           { name: "Train", price: 12 }
         ],
@@ -40,11 +39,11 @@ export default class App extends React.Component {
     }, 3000);
   }
 
-  renderHeader = () => { return this.state.header.map(headerItem => <Header title={headerItem.title} subtitle={headerItem.subtitle} />) }
-  renderToys = () => {
-    return this.state.toys.map(toy => <Toy id={toy.id} name={toy.name} recommendedAge={toy.recommendedAge} recommendedGender={toy.recommendedGender} price={toy.price} />)
+  renderHeader = () => { return this.state.headerList.map(headerItem => <Header title={headerItem.title} subtitle={headerItem.subtitle} />) }
+  renderItem = () => {
+    return this.state.itemList.map(item => <Item id={item.id} name={item.name} recommendedAge={item.recommendedAge} recommendedGender={item.recommendedGender} price={item.price} />)
   }
-  renderCart = () => { return this.state.cart.map(cart => < CartItem name={cart.name} price={cart.price} />) }
+  renderCart = () => { return this.state.cartList.map(cart => < CartItem name={cart.name} price={cart.price} />) }
 
 
   render() {
@@ -63,7 +62,7 @@ export default class App extends React.Component {
         </div>
         <div className='toys-container'>
           <p>Toys</p>
-          {this.renderToys()}
+          {this.renderItem()}
         </div>
       </div>
     );
