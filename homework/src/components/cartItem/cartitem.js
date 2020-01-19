@@ -30,15 +30,20 @@ class CartItem extends Component {
           <li className="list-group-item">{color}</li>
           <li className="list-group-item">{price}</li>
         </ul>
-        <div className="d-inline text-center">
+        <div className="d-flex flex-row justify-content-center">
           <button
             onClick={() => this.props.increment(itemId)}
             className="btn btn-danger btn-sm"
           >
             +
           </button>
-          <span className="ml-2 mr-2">0</span>
-          <button className="btn btn-danger btn-sm">-</button>
+          <span className="mx-2 my-2">{this.props.counter}</span>
+          <button
+            onClick={() => this.props.decrement(itemId)}
+            className="btn btn-danger btn-sm"
+          >
+            -
+          </button>
         </div>
       </div>
     );

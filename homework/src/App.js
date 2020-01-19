@@ -23,35 +23,40 @@ class App extends Component {
           name: "Acer",
           description: "school laptop",
           color: "red",
-          price: "300 Euro"
+          price: "300 Euro",
+          counter: 1
         },
         {
           id: 2,
           name: "Hp",
           description: "office laptop",
           color: "blue",
-          price: "400 Euro"
+          price: "400 Euro",
+          counter: 1
         },
         {
           id: 3,
           name: "Apple",
           description: "business laptop",
           color: "silver",
-          price: "1000 Euro"
+          price: "1000 Euro",
+          counter: 1
         },
         {
           id: 4,
           name: "Trackstor",
           description: "gaming laptop",
           color: "Black",
-          price: "900 Euro"
+          price: "900 Euro",
+          counter: 1
         },
         {
           id: 5,
           name: "Dell",
           description: "business laptop",
           color: "yellow",
-          price: "985 Euro"
+          price: "985 Euro",
+          counter: 1
         }
       ]
     });
@@ -78,6 +83,7 @@ class App extends Component {
       <CartItem
         className="col-sm-6"
         increment={this.incrementCartItem}
+        decrement={this.decrementCartItem}
         key={item.id}
         removeFromCart={this.removeFromCart}
         itemId={item.id}
@@ -85,6 +91,7 @@ class App extends Component {
         description={item.description}
         color={item.color}
         price={item.price}
+        counter={item.counter}
       />
     ));
   cleanCart = () => {
@@ -112,14 +119,24 @@ class App extends Component {
   };
 
   incrementCartItem = itemId => {
-    //increment
-    const { price } = this.state.laptopsCart;
-    console.log(price);
     console.log(itemId);
+    const updateCounter = this.state.laptopsCart.filter(
+      index => index.id === itemId
+    );
+    for (let i = 0; i < updateCounter.length; i++) {
+      console.log(updateCounter[i].counter++);
+    }
   };
 
-  decrementCartItem = () => {
+  decrementCartItem = itemId => {
     //decrement
+    console.log(itemId);
+    const updateCounter = this.state.laptopsCart.filter(
+      index => index.id === itemId
+    );
+    for (let i = 0; i < updateCounter.length; i++) {
+      console.log(updateCounter[i].counter--);
+    }
   };
 
   /*if (itemToRemove) {
