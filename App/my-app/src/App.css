@@ -1,3 +1,24 @@
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+table {
+  border-collapse: collapse;
+
+}
+
+th,td {
+  padding: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: ce;
+  border-bottom: 1px solid pink;
+}
+
 .App {
   text-align: left;
 }
