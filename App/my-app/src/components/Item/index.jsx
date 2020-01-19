@@ -5,24 +5,23 @@ export class Item extends React.Component {
     super(props);
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.id !== this.props.id ||
+      nextProps.name !== this.props.name ||
+      nextProps.recommendedAge !== this.props.recommendedGender ||
+      nextProps.price !== this.props.price;
+  }
+
   render() {
-    return (
-      <table>
-        <tr>
-          <th>Product ID</th>
-          <th>Product Name</th>
-          <th>Recommended Age</th>
-          <th>Recommended Gender</th>
-          <th>Price</th>
-        </tr>
-        <tr>
-          <td>{this.props.id}</td>
-          <td>{this.props.name}</td>
-          <td>{this.props.recommendedAge}</td>
-          <td>{this.props.recommendedGender ? this.props.recommendedGender : "unisex"}</td>
-          <td>{this.props.price}</td>
-        </tr>
-      </table>
+    return ( 
+      <div>
+        <span>id: {this.props.id} </span>
+          <span>name: {this.props.name} </span>
+          <span>recommended age: {this.props.recommendedAge} </span>
+          <span>recommeded gender: {this.props.recommendedGender ? this.props.recommendedGender : "unisex"} </span>
+          <span>price: {this.props.price} </span>
+          <button onClick={()=>this.props.addToCart(this.props.id)}>Add to cart</button>
+      </div>
     );
   }
 }

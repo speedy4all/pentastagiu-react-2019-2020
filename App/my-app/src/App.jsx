@@ -10,12 +10,20 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.incrementQuantity = this.incrementQuantity.bind(this);
     this.state = {
       headerList: [],
       itemList: [],
       cartList: [],
-      loader: false
+      loader: false,
+      quantity: 0
     }
+  }
+
+  incrementQuantity = () => {
+    this.setState(ps => {
+      return { quantity: ps.quantity + 1 }
+    })
   }
 
   componentDidMount() {
@@ -30,10 +38,6 @@ export default class App extends React.Component {
           { id: 5, name: "Teddy bear", recommendedAge: 3, price: 30 },
           { id: 6, name: "Kite", recommendedAge: 10, price: 30 }
         ],
-        cartList: [
-          { name: "Doll", price: 30 },
-          { name: "Train", price: 12 }
-        ],
         loader: true
       })
     }, 3000);
@@ -41,22 +45,45 @@ export default class App extends React.Component {
 
   renderHeader = () => { return this.state.headerList.map(headerItem => <Header title={headerItem.title} subtitle={headerItem.subtitle} />) }
   renderItem = () => {
-    return this.state.itemList.map(item => <Item id={item.id} name={item.name} recommendedAge={item.recommendedAge} recommendedGender={item.recommendedGender} price={item.price} />)
+    return this.state.itemList.map(item => <Item incrementQuantity={this.incrementQuantity} addToCart={this.addToCart} id={item.id} name={item.name} recommendedAge={item.recommendedAge} recommendedGender={item.recommendedGender} price={item.price} />)
   }
-  renderCart = () => { return this.state.cartList.map(cart => < CartItem name={cart.name} price={cart.price} />) }
+  renderCart = () => { return this.state.cartList.map(cart => < CartItem removeFromCart={this.removeFromCart} id={cart.id} name={cart.name} quantity={cart.quantity} price={cart.price} />) }
 
+  cleanCart = () => {
+    this.setState({ cartList: [] })
+  }
 
+  addToCart = (itemID) => {
+    const itemToAdd = this.state.itemList.find(item => item.id === itemID);
+    if (itemToAdd){
+    if( !this.state.cartList.find(item => item.id === itemID)) {
+      const cartUp = this.state.cartList.slice();
+      cartUp.push(itemToAdd);
+      this.incrementQuantity();
+      this.setState({ cartList: cartUp });
+    }
+    else{
+      this.setState({ quantity: this.incrementQuantity() });
+    }
+  }
+  }
+
+  removeFromCart = (itemID) => {
+    const cartUp = this.state.cartList.filter(item => item.id !== itemID);
+    this.setState({ cartList: cartUp });
+  }
   render() {
     if (!this.state.loader)
       return "Loading...";
     return (
       <div className="App">
         <>
-          <div class="header">
+          <div className="header">
             {this.renderHeader()}
           </div>
         </>
-        <div className='toys-container'>
+        <div className='cart-container'>
+          <button onClick={this.cleanCart}>Delete cart</button>
           <p>My Cart</p>
           {this.renderCart()}
         </div>
