@@ -74,6 +74,12 @@ export default class App extends Component {
         }, 500);
     }
 
+    cleanCart = () => {
+        this.setState({
+            cartItems: []
+        });
+    };
+
     addToCart = (itemId) => {
         const dublicateId = this.state.cartItems.find(({id}) => id === itemId);
 
@@ -87,7 +93,7 @@ export default class App extends Component {
             })
 
         } else {
-            const itemToAdd =  Object.assign({}, this.state.cars.find(({id}) => id === itemId));
+            const itemToAdd = Object.assign({}, this.state.cars.find(({id}) => id === itemId));
 
             this.setState({
                 cartItems: [...this.state.cartItems, itemToAdd]
@@ -121,7 +127,7 @@ export default class App extends Component {
         }
 
         this.setState({cartItems: cartItems});
-    }
+    };
 
 
     render() {
@@ -133,6 +139,7 @@ export default class App extends Component {
                     </div>
                     <div className="box-container">
                         <CartList cartItems={this.state.cartItems} cartItemsLoaded={this.state.cartItemsLoaded}
+                                  cleanCart={this.cleanCart}
                                   incrementQuantity={this.incrementQuantity} decrementQuantity={this.decrementQuantity}
                                   deleteFromCart={this.deleteFromCart}/>
                     </div>

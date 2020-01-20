@@ -1,16 +1,6 @@
-.cart-list {
-  padding: 25px;
-}
-.quantity {
+.cart-list .btn-clean {
   margin: 0 10px;
-}
-
-.quantity .btn {
-  border-radius: 50%;
-}
-
-.quantity-number {
-  padding: 0 10px;
+  cursor: pointer;
 }
 
 .loading {

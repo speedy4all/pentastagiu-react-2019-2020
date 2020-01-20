@@ -29,7 +29,7 @@ export default class CartList extends Component {
 
     render() {
         if (!this.props.cartItemsLoaded) return <Spinner/>;
-        return (<div className="box-list">
+        return (<div className="cart-list">
             <table className="table">
                 <thead className="thead-dark">
                 <tr>
@@ -39,7 +39,7 @@ export default class CartList extends Component {
                     <th scope="col">Combustible</th>
                     <th scope="col">Color</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Action {(this.props.cartItems.length>0)?(<div className="btn btn-danger btn-clean" onClick={this.props.cleanCart} >Clean Cart</div>):undefined} </th>
                 </tr>
                 </thead>
                 <tbody>
