@@ -25,13 +25,6 @@ export default class App extends React.Component {
           title: "Trips in the magical romanian mountains",
           subtitle: "Are you sure that you know your country?"
         },
-        cartList: [
-          { peak: "Moldoveanu", county: "Sibiu", cottage: "Villa Balea" },
-          { peak: "Omu", county: "Brasov" },
-          { peak: "Toaca", county: "Neamt" },
-          { peak: "Retezat", county: "Hunedoara" },
-          { peak: "Pietrosul Rodnei", county: "Maramures" }
-        ],
         mountains: [
           {
             id: 1,
@@ -79,6 +72,9 @@ export default class App extends React.Component {
   renderMountains = () =>
     this.state.mountains.map(mountain => (
       <Mountain
+        addToCart={this.addToCart}
+        key={mountain.id}
+        itemId={mountain.id}
         peak={mountain.peak}
         mountain={mountain.mountain}
         county={mountain.county}
@@ -88,24 +84,76 @@ export default class App extends React.Component {
     ));
 
   renderCart = () =>
-    this.state.cartList.map(cartItem => (
+    this.state.cartList.map((cartItem, index) => (
       <CartItem
+        remove={this.removeFromCart}
+        decrease={this.decrease}
+        increase={this.addToCart}
+        key={`${cartItem.id}-${index}`}
+        itemId={cartItem.id} // id-ul unic
         peak={cartItem.peak}
         county={cartItem.county}
         cottage={cartItem.cottage}
+        countItem={cartItem.countItem} // nr. de trips
       />
     ));
+  cleanCart = () => {
+    this.setState({ cartList: [] });
+  };
 
+  addToCart = itemId => {
+    // debugger;
+    const itemToAdd = this.state.mountains.find(item => item.id === itemId);
+    if (!itemToAdd) {
+      return undefined;
+    }
+
+    const cartUpdated = this.state.cartList.slice();
+    const cartItem = cartUpdated.find(item => item.id === itemId);
+    if (!cartItem) {
+      // create a new trip
+      const newItem = Object.assign({}, itemToAdd);
+      newItem.countItem = 1;
+      cartUpdated.push(newItem);
+    } else {
+      // increse the trips
+      cartItem.countItem++;
+    }
+    this.setState({ cartList: cartUpdated });
+  };
+  decrease = itemId => {
+    debugger;
+    let cartUpdated = this.state.cartList.slice();
+    let cartItem = cartUpdated.find(item => item.id === itemId);
+
+    if (cartItem.countItem === 1) {
+      // detlete row
+      cartUpdated = cartUpdated.filter(x => x.id !== itemId);
+    } else {
+      // decrese the trips
+      cartItem.countItem--;
+    }
+    this.setState({ cartList: cartUpdated });
+  };
+  removeFromCart = itemId => {
+    const cartUpdated = this.state.cartList.filter(x => x.id !== itemId);
+    this.setState({ cartList: cartUpdated });
+  };
   render() {
     if (!this.state.itemLoaded || !this.state.cartLoaded)
       return <div>Loading...</div>;
     return (
       <>
-        <Header
-          title={this.state.header.title}
-          subtitle={this.state.header.subtitle}
-        />
-        <div className="cart-container">{this.renderCart()}</div>
+        <header>
+          <Header
+            title={this.state.header.title}
+            subtitle={this.state.header.subtitle}
+          />
+        </header>
+        <div className="cart-container">
+          {this.renderCart()}
+          <button onClick={this.cleanCart}>Remove</button>
+        </div>
         <div className="mountains-container">{this.renderMountains()}</div>
       </>
     );
