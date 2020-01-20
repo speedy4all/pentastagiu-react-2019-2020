@@ -1,17 +1,16 @@
-.BoxHeader {
+.app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   padding: 10px 30px;
 }
 
-.BoxHeader__title h1 {
+.app-header__title h1 {
   line-height: 1;
   font-size: 20px;
 }
 
-.BoxHeader__logo img {
+.app-header__logo img {
   width: 50px;
   height: 50px;
 }

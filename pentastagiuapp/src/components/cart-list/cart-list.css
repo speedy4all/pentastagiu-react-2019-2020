@@ -1,0 +1,20 @@
+.cart-list {
+  padding: 25px;
+}
+.quantity {
+  margin: 0 10px;
+}
+
+.quantity .btn {
+  border-radius: 50%;
+}
+
+.quantity-number {
+  padding: 0 10px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}

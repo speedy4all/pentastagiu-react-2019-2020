@@ -1,19 +1,22 @@
-.car {
+.car-item-box {
   display: flex;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
 }
 
-.car:last-of-type {
+.car-item-box:last-of-type {
   border-bottom: none;
 }
 
-.car .item {
+.car-item-box .item {
   width: calc(100% / 5);
   flex-shrink: 0;
   padding: 10px 5px;
 }
 
-.car .item span {
+.car-item-box .item span {
   font-weight: 700;
   text-transform: uppercase;
 }
+
+
+

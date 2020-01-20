@@ -1,0 +1,24 @@
+.cart-item__action {
+    display: flex;
+    align-items: flex-start;
+}
+
+.cart-item__action .number {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+}
+
+.cart-item__action .btn {
+    cursor: pointer;
+}
+
+.cart-item__action .number input {
+    height: 100%;
+    width: 40px;
+    text-align: center;
+    font-size: 1.6rem;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+}
