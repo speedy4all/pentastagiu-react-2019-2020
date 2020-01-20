@@ -1,5 +1,4 @@
 // Application definition
-
 /**
  * @returns random element from any array
  */
