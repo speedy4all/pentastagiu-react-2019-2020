@@ -23,40 +23,35 @@ class App extends Component {
           name: "Acer",
           description: "school laptop",
           color: "red",
-          price: "300 Euro",
-          counter: 1
+          price: "300 Euro"
         },
         {
           id: 2,
           name: "Hp",
           description: "office laptop",
           color: "blue",
-          price: "400 Euro",
-          counter: 1
+          price: "400 Euro"
         },
         {
           id: 3,
           name: "Apple",
           description: "business laptop",
           color: "silver",
-          price: "1000 Euro",
-          counter: 1
+          price: "1000 Euro"
         },
         {
           id: 4,
           name: "Trackstor",
           description: "gaming laptop",
           color: "Black",
-          price: "900 Euro",
-          counter: 1
+          price: "900 Euro"
         },
         {
           id: 5,
           name: "Dell",
           description: "business laptop",
           color: "yellow",
-          price: "985 Euro",
-          counter: 1
+          price: "985 Euro"
         }
       ]
     });
@@ -79,19 +74,19 @@ class App extends Component {
       />
     ));
   renderCart = () =>
-    this.state.laptopsCart.map(item => (
+    this.state.laptopsCart.map((item, index) => (
       <CartItem
         className="col-sm-6"
-        increment={this.incrementCartItem}
-        decrement={this.decrementCartItem}
-        key={item.id}
+        key={`${item.id}-${index}`}
         removeFromCart={this.removeFromCart}
+        add={this.addToCart}
         itemId={item.id}
         name={item.name}
         description={item.description}
         color={item.color}
         price={item.price}
-        counter={item.counter}
+        count={item.count}
+        decreaseCount={this.removeOneFromCart}
       />
     ));
   cleanCart = () => {
@@ -100,15 +95,26 @@ class App extends Component {
   };
 
   addToCart = itemId => {
-    const found = this.state.laptops.find(item => item.id === itemId);
-    //item.id === itemId;);
-    console.log(found);
-    if (found) {
-      const cartUpdated = this.state.laptopsCart.slice();
-      cartUpdated.push(found);
-      this.setState({ laptopsCart: cartUpdated });
-      console.log(this.state.laptopsCart);
+    const itemToAdd = this.state.laptops.find(x => x.id === itemId);
+
+    if (!itemToAdd) {
+      return undefined;
     }
+
+    const cartListUpdated = this.state.laptopsCart.slice();
+    const itemAlreadyAdded = cartListUpdated.find(x => x.id === itemId);
+    //console.log(cartListUpdated, itemAlreadyAdded);
+    if (itemAlreadyAdded) {
+      itemAlreadyAdded.count++;
+    } else {
+      const newItem = Object.assign({}, itemToAdd);
+      newItem.count = 1;
+      cartListUpdated.push(newItem);
+      //console.log(cartListUpdated);
+    }
+
+    this.setState({ laptopsCart: cartListUpdated });
+    console.log(this.state.laptopsCart);
   };
   removeFromCart = itemId => {
     const cartUpdated = this.state.laptopsCart.filter(
@@ -118,27 +124,16 @@ class App extends Component {
     this.setState({ laptopsCart: cartUpdated });
   };
 
-  incrementCartItem = itemId => {
-    console.log(itemId);
-    const updateCounter = this.state.laptopsCart.filter(
-      index => index.id === itemId
-    );
-    for (let i = 0; i < updateCounter.length; i++) {
-      console.log(updateCounter[i].counter++);
+  removeOneFromCart = itemId => {
+    let cartListUpdated = this.state.laptopsCart.slice();
+    const itemToRemove = cartListUpdated.find(x => x.id === itemId);
+    if (itemToRemove && itemToRemove.count === 1) {
+      cartListUpdated = cartListUpdated.filter(x => x.id !== itemId);
+    } else {
+      itemToRemove.count = itemToRemove.count - 1;
     }
+    this.setState({ cart: cartListUpdated });
   };
-
-  decrementCartItem = itemId => {
-    //decrement
-    console.log(itemId);
-    const updateCounter = this.state.laptopsCart.filter(
-      index => index.id === itemId
-    );
-    for (let i = 0; i < updateCounter.length; i++) {
-      console.log(updateCounter[i].counter--);
-    }
-  };
-
   /*if (itemToRemove) {
       //const index = this.state.laptopsCart.indexOf(itemToRemove);
       const cartUpdated = this.state.laptopsCart.splice(0, 1);
@@ -167,7 +162,7 @@ class App extends Component {
         >
           Clear Cart
         </button>
-        <div className="row bg-light py-0">
+        <div className="row bg-light">
           {showInfo ? this.renderCart() : null}
         </div>
         <div className="row">{showInfo ? this.renderList() : null}</div>

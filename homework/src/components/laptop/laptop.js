@@ -20,7 +20,7 @@ class Laptop extends Component {
         <ul className="list-group list-group-flush">
           <li className="list-group-item font-italic">{description}</li>
           <li className="list-group-item">{color}</li>
-          <li className="list-group-item">{price}</li>
+          <li className="list-group-item ">{price}</li>
         </ul>
         <button
           onClick={() => addToCart(this.props.itemId)}
