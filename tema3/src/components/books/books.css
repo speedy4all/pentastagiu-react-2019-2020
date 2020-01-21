@@ -1,0 +1,43 @@
+
+  
+  .books-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 20px;
+    border: 5px solid #F5B355;
+    border-radius: 10px;
+    padding: 13px;
+  }
+  
+  .books-items button{
+    box-shadow: 0px 1px 0px 0px #fff6af;
+      background-color:#ffec64;
+      border-radius:6px;
+      border:1px solid #e39724;
+      display:inline-block;
+      cursor:pointer;
+      color:#333333;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 24px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #ffee66;
+  }
+#wishlist{
+    box-shadow: 0px 1px 0px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:6px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2b665e;
+  }
