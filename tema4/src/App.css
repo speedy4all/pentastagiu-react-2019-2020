@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.books-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+ 
+}
+
+.books-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+  border: 5px solid #F5B355;
+  border-radius: 10px;
+  padding: 10px;
+  
+}
+
+.books-items button{
+  box-shadow: 0px 1px 0px 0px #fff6af;
+	background-color:#ffec64;
+	border-radius:6px;
+	border:1px solid #e39724;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.books-items button #wishlist{
+  box-shadow: 0px 1px 0px 0px #91b8b3;
+	background-color:#768d87;
+	border-radius:6px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2b665e;
+}
+
+.remove {
+	box-shadow: 0px 1px 0px 0px #fff6af;
+	background-color:#ffec64;
+	border-radius:6px;
+	border:1px solid #e39724;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+	margin-top: 20px;
+}
