@@ -61,3 +61,14 @@
   padding-left: 10%;
 }
 
+.delete-button {
+  color: #e60000;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  color: #cc0000;
+  font-weight: bold;
+
+}
+
