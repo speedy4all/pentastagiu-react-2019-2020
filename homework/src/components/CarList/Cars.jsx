@@ -105,7 +105,7 @@ export default class Cars extends React.Component {
             <React.Fragment>
                 <div className="App-main-paige">
                     <Container>
-                        <div className="cart"> {this.renderCartItems()} </div>
+                        <div className={`cart ${this.state.cartItems.length === 0 ? "hidden" : ""} `}> {this.renderCartItems()} </div>
                         <Row>{this.renderCars()}</Row>
                     </Container>
                 </div>

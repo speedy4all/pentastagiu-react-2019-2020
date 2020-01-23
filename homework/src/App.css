@@ -41,6 +41,10 @@
   padding: 5px 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 .cart-item {
   display: flex;
   flex-direction: row;
