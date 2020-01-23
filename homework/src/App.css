@@ -69,6 +69,10 @@
   cursor: pointer;
   color: #cc0000;
   font-weight: bold;
+}
 
+.counter {
+  margin: 2px;
+  font-size: 1.2rem;
 }
 

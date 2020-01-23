@@ -25,9 +25,9 @@ export default class Cars extends React.Component {
                     {id: 4, brand:'Dacia', model:'Lodgy', cm3: '1332', color: 'BLEU IRON', description:'Mașina de familie cu 7 locuri dinamică și robustă.', price: 14100},
                     {id: 5, brand:'Dacia', model:'Dokker Van', cm3: '1332', color: 'BLEU NAVY', description:'Furgoneta cu design practic.', price: 11785}
                 ],
-                cartItems:[
-                    {id: 5, brand:'Dacia', model:'Dokker Van', cm3: '1332', color: 'BLEU NAVY', description:'Furgoneta cu design practic.', price: 11785}
-                ],
+                // cartItems:[
+                //     {id: 5, brand:'Dacia', model:'Dokker Van', cm3: '1332', color: 'BLEU NAVY', description:'Furgoneta cu design practic.', price: 11785}
+                // ],
                 listLoaded: true
         });
         }, 1500)
@@ -54,19 +54,40 @@ export default class Cars extends React.Component {
            brand = {cartItem.brand} 
            model = {cartItem.model} 
            color = {cartItem.color} 
-           price = {cartItem.price} 
+           price = {cartItem.price}
+           counter = {cartItem.counter} 
        />)
    }
+
+    // addToCart = (itemId) => {
+    //     const itemToAdd = this.state.cars.find(item => item.id === itemId);
+
+    //     if(itemToAdd) {
+    //         const cartUpdated = this.state.cartItems.slice();
+    //         cartUpdated.push(itemToAdd);
+    //         console.log(cartUpdated);
+            
+    //         this.setState({cartItems: cartUpdated});
+    //     }
+    // }
+
 
     addToCart = (itemId) => {
         const itemToAdd = this.state.cars.find(item => item.id === itemId);
 
-        if(itemToAdd) {
-            const cartUpdated = this.state.cartItems.slice();
+        const cartUpdated = this.state.cartItems.slice();
+
+        const itemExist = cartUpdated.find(elem => elem.id === itemId)
+        
+        if(itemExist) {
+            itemToAdd.counter += 1;
+        } else {
+            itemToAdd.counter = 1;
             cartUpdated.push(itemToAdd);
-            
-            this.setState({cartItems: cartUpdated});
         }
+
+        this.setState({cartItems: cartUpdated});
+        
     }
 
     removeFromCart = (itemId) => {
