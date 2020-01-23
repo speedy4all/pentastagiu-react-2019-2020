@@ -64,7 +64,7 @@ Factory.prototype.modifyProduction = function () {
     const newCarFactory = new Factory (Car, 5);
 
     newCarFactory.startBuildProcess(
-        ["Toyota", "Mazda", "Porche"],
+        ["Toyota", "Mazda", "Porsche"],
         ["V12", "2400 cmc", "2000 cmc"]
         );
 }
