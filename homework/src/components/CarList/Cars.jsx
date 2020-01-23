@@ -2,8 +2,7 @@ import React from 'react';
 import { Car } from './Car';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Cart from '../Cart/cart';
-
+import CartItem from '../Cart/cartItem';
 
 
 export default class Cars extends React.Component {
@@ -12,6 +11,7 @@ export default class Cars extends React.Component {
 
         this.state = {
             cars: [],
+            cartItems: [],
             listLoaded: false
         }
     }
@@ -25,6 +25,9 @@ export default class Cars extends React.Component {
                     {id: 4, brand:'Dacia', model:'Lodgy', cm3: '1332', color: 'BLEU IRON', description:'Mașina de familie cu 7 locuri dinamică și robustă.', price: 14100},
                     {id: 5, brand:'Dacia', model:'Dokker Van', cm3: '1332', color: 'BLEU NAVY', description:'Furgoneta cu design practic.', price: 11785}
                 ],
+                // cartItems:[
+                //     {id: 5, brand:'Dacia', model:'Dokker Van', cm3: '1332', color: 'BLEU NAVY', description:'Furgoneta cu design practic.', price: 11785}
+                // ],
                 listLoaded: true
         });
         }, 1500)
@@ -32,6 +35,8 @@ export default class Cars extends React.Component {
     renderCars = () => {
         return this.state.cars.map(car => <Car
             key = {car.id} 
+            addToCart = {this.addToCart}
+            carId= {car.id}
             brand = {car.brand} 
             model = {car.model} 
             cm3 = {car.cm3} 
@@ -41,6 +46,57 @@ export default class Cars extends React.Component {
         />)
     }
 
+    renderCartItems = () => {
+        return this.state.cartItems.map((cartItem, index) => <CartItem 
+           key = {`${cartItem.id} - ${index}`} 
+           removeFromCart = {this.removeFromCart}
+           cartId = {cartItem.id}
+           brand = {cartItem.brand} 
+           model = {cartItem.model} 
+           color = {cartItem.color} 
+           price = {cartItem.price}
+           counter = {cartItem.counter} 
+       />)
+   }
+
+    // addToCart = (itemId) => {
+    //     const itemToAdd = this.state.cars.find(item => item.id === itemId);
+
+    //     if(itemToAdd) {
+    //         const cartUpdated = this.state.cartItems.slice();
+    //         cartUpdated.push(itemToAdd);
+    //         console.log(cartUpdated);
+            
+    //         this.setState({cartItems: cartUpdated});
+    //     }
+    // }
+
+
+    addToCart = (itemId) => {
+        const itemToAdd = this.state.cars.find(item => item.id === itemId);
+
+        const cartUpdated = this.state.cartItems.slice();
+
+        const itemExist = cartUpdated.find(elem => elem.id === itemId)
+        
+        if(itemExist) {
+            itemToAdd.counter += 1;
+        } else {
+            itemToAdd.counter = 1;
+            cartUpdated.push(itemToAdd);
+        }
+
+        this.setState({cartItems: cartUpdated});
+        
+    }
+
+    removeFromCart = (itemId) => {
+        const cartUpdated = this.state.cartItems.filter(item => item.id !== itemId);
+
+        this.setState({cartItems: cartUpdated});
+    }
+
+
     render() {
         if(!this.state.listLoaded) {
             return <div className="loading">Loading ...</div>
@@ -49,7 +105,7 @@ export default class Cars extends React.Component {
             <React.Fragment>
                 <div className="App-main-paige">
                     <Container>
-                        <Cart />
+                        <div className={`cart ${this.state.cartItems.length === 0 ? "hidden" : ""} `}> {this.renderCartItems()} </div>
                         <Row>{this.renderCars()}</Row>
                     </Container>
                 </div>

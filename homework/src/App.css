@@ -41,6 +41,10 @@
   padding: 5px 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 .cart-item {
   display: flex;
   flex-direction: row;
@@ -59,5 +63,20 @@
 
 .title-header {
   padding-left: 10%;
+}
+
+.delete-button {
+  color: #e60000;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.counter {
+  margin: 2px;
+  font-size: 1.2rem;
 }
 
