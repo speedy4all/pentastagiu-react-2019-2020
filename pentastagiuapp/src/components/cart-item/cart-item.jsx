@@ -1,7 +1,11 @@
 import React, {Component} from "react";
 import "./cart-item.css";
 
+import {LocalContext} from "../context/context";
+
 export default class CartItem extends Component {
+    static contextType = LocalContext;
+
     shouldComponentUpdate(nextProps) {
         return nextProps.id !== this.props.id ||
             nextProps.row !== this.props.row ||
@@ -22,7 +26,7 @@ export default class CartItem extends Component {
                 <td>{engine}</td>
                 <td>{combustible}</td>
                 <td>{color}</td>
-                <td>{price} Euro</td>
+                <td>{price} {this.context.currency}</td>
                 <td className="cart-item__action">
                     <div className="quantity">
                         <div className="btn btn-danger" onClick={() => decrementQuantity(id)}><i className="fa fa-minus"

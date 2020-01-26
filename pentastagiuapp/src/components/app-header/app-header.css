@@ -10,6 +10,29 @@
   font-size: 20px;
 }
 
+.app-header__action {
+  display: flex;
+  align-items: center;
+}
+
+.app-header__action .action-box {
+  font-weight: 700;
+  margin: 5px 15px;
+}
+
+.app-header__action .action-box .action-box__title {
+  text-align: center;
+  font-weight: 700;
+}
+
+.app-header__action .action-box .action-box__options {
+  font-weight: 700;
+}
+
+.app-header__action .action-box .action-box__options button {
+  margin: 5px;
+}
+
 .app-header__logo img {
   width: 50px;
   height: 50px;

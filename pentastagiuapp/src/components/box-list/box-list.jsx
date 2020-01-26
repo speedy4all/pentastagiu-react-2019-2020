@@ -3,9 +3,12 @@ import CarItem from "../car-item";
 import Spinner from "../spinner";
 
 import "./box-list.css";
+import {ThemeContext} from "../context/context";
 
 
 export default class BoxList extends Component {
+    static contextType = ThemeContext;
+
     shouldComponentUpdate(nextProps) {
         return nextProps.cars !== this.props.cars
     }
@@ -24,11 +27,10 @@ export default class BoxList extends Component {
                 addToCart={this.props.addToCart}
             />
         ));
-
     render() {
         if (!this.props.carsLoaded) return <Spinner />;
         return (<div className="box-list">
-            <table className="table table-striped table-dark">
+            <table className={`table table-striped ${this.context.themeColor}`}>
                 <thead>
                 <tr>
                     <th scope="col">#ID</th>

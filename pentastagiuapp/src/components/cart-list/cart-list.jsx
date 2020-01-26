@@ -3,8 +3,11 @@ import CartItem from "../cart-item/cart-item";
 import Spinner from "../spinner";
 
 import "./cart-list.css";
+import {ThemeContext} from "../context/context";
 
 export default class CartList extends Component {
+    static contextType = ThemeContext;
+
     shouldComponentUpdate(nextProps) {
         return nextProps.cartItems !== this.props.cartItems
     }
@@ -30,8 +33,8 @@ export default class CartList extends Component {
     render() {
         if (!this.props.cartItemsLoaded) return <Spinner/>;
         return (<div className="cart-list">
-            <table className="table">
-                <thead className="thead-dark">
+            <table className={`table table-striped ${this.context.themeColor}`}>
+                <thead>
                 <tr>
                     <th scope="col">#ID</th>
                     <th scope="col">Name</th>

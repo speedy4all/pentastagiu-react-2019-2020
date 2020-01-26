@@ -3,6 +3,8 @@ import AppHeader from "../app-header";
 import BoxList from "../box-list";
 import CartList from "../cart-list";
 
+import {ThemeContext, LocalContext} from "../context/context";
+
 import logo from "./car-logo.png";
 
 export default class App extends Component {
@@ -13,6 +15,8 @@ export default class App extends Component {
             carsLoaded: false,
             cartItems: [],
             cartItemsLoaded: false,
+            currency: '',
+            themeColor: ''
         };
     }
 
@@ -26,7 +30,7 @@ export default class App extends Component {
                         engine: "3.0",
                         combustible: "disel",
                         color: "black",
-                        price: "1000",
+                        price: 30200,
                         quantity: 1
                     },
                     {
@@ -35,7 +39,7 @@ export default class App extends Component {
                         engine: "3.0",
                         combustible: "benzine",
                         color: "blue",
-                        price: "1000",
+                        price: 20300,
                         quantity: 1
                     },
                     {
@@ -44,7 +48,7 @@ export default class App extends Component {
                         engine: "2.2",
                         combustible: "benzine",
                         color: "silver",
-                        price: "1000",
+                        price: 25650,
                         quantity: 1
                     },
                     {
@@ -53,7 +57,7 @@ export default class App extends Component {
                         engine: "2",
                         combustible: "disel",
                         color: "white",
-                        price: "1000",
+                        price: 2000,
                         quantity: 1
                     },
                     {
@@ -62,14 +66,15 @@ export default class App extends Component {
                         engine: "3.0",
                         combustible: "benzine",
                         color: "red",
-                        price: "1000",
+                        price: 10700,
                         quantity: 1
                     }
                 ],
                 carsLoaded: true,
                 cartItems: [],
                 cartItemsLoaded: true,
-
+                currency: 'EURO',
+                themeColor: 'table-dark'
             });
         }, 500);
     }
@@ -129,25 +134,75 @@ export default class App extends Component {
         this.setState({cartItems: cartItems});
     };
 
+    changeThemeColor = (color) => {
+        this.setState({
+            themeColor: color
+        })
+    };
+
+    changeCurrency = (value) => {
+        const {currency: previousCurrency } = this.state;
+        const {cars} = this.state;
+        let newValue = [...cars];
+        let newCarsArray = [];
+
+        if (value!==previousCurrency) {
+            switch (value) {
+                case 'RON':
+                    newValue.map(car => {
+                        car.price = car.price * 4.7;
+                    });
+                    break;
+                case 'EURO':
+                    newValue.map(car => {
+                        car.price = car.price / 4.7;
+                    });
+                    break;
+                default:
+                    newCarsArray = [];
+            }
+        }
+
+        newCarsArray = [...newValue];
+
+        this.setState({
+            cars: newCarsArray,
+            currency: value
+        })
+    };
+
 
     render() {
+        const {themeColor, currency} = this.state;
+
         return (
-            <div className="app">
-                <div className="card">
-                    <div className="card-header">
-                        <AppHeader title="Cars" logo={logo}/>
-                    </div>
-                    <div className="box-container">
-                        <CartList cartItems={this.state.cartItems} cartItemsLoaded={this.state.cartItemsLoaded}
-                                  cleanCart={this.cleanCart}
-                                  incrementQuantity={this.incrementQuantity} decrementQuantity={this.decrementQuantity}
-                                  deleteFromCart={this.deleteFromCart}/>
-                    </div>
-                    <div className="cart-container">
-                        <BoxList cars={this.state.cars} carsLoaded={this.state.carsLoaded} addToCart={this.addToCart}/>
+            <ThemeContext.Provider
+                value={{
+                    themeColor,
+                    changeThemeColor: this.changeThemeColor,
+                    changeCurrency: this.changeCurrency
+                }}>
+                <div className="app">
+                    <div className="card">
+                        <div className="card-header">
+                            <AppHeader title="Cars" logo={logo}/>
+                        </div>
+                        <LocalContext.Provider value={{currency}}>
+                            <div className="box-container">
+                                <CartList cartItems={this.state.cartItems} cartItemsLoaded={this.state.cartItemsLoaded}
+                                          cleanCart={this.cleanCart}
+                                          incrementQuantity={this.incrementQuantity}
+                                          decrementQuantity={this.decrementQuantity}
+                                          deleteFromCart={this.deleteFromCart}/>
+                            </div>
+                            <div className="cart-container">
+                                <BoxList cars={this.state.cars} carsLoaded={this.state.carsLoaded}
+                                         addToCart={this.addToCart}/>
+                            </div>
+                        </LocalContext.Provider>
                     </div>
                 </div>
-            </div>
+            </ThemeContext.Provider>
         );
     }
 }
