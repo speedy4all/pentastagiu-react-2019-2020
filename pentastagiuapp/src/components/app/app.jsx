@@ -142,31 +142,43 @@ export default class App extends Component {
 
     changeCurrency = (value) => {
         const {currency: previousCurrency } = this.state;
-        const {cars} = this.state;
-        let newValue = [...cars];
+        const {cars, cartItems} = this.state;
+        let newValueCars = [...cars];
+        let newValueCart = [...cartItems];
         let newCarsArray = [];
+        let newCartArray = [];
 
         if (value!==previousCurrency) {
             switch (value) {
                 case 'RON':
-                    newValue.map(car => {
+                    newValueCars.map(car => {
+                        car.price = car.price * 4.7;
+                    });
+                    newValueCart.map(car => {
                         car.price = car.price * 4.7;
                     });
                     break;
                 case 'EURO':
-                    newValue.map(car => {
+                    newValueCars.map(car => {
+                        car.price = car.price / 4.7;
+                    });
+                    newValueCart.map(car => {
                         car.price = car.price / 4.7;
                     });
                     break;
                 default:
                     newCarsArray = [];
+                    newCartArray = [];
             }
         }
 
-        newCarsArray = [...newValue];
+        newCarsArray = [...newValueCars];
+        newCartArray = [...newValueCart];
+
 
         this.setState({
             cars: newCarsArray,
+            cartItems: newCartArray,
             currency: value
         })
     };
