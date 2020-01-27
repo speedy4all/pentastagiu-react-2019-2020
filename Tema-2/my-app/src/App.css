@@ -16,8 +16,8 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -30,6 +30,38 @@
 span{
   margin: 5px;  
 }
+.item-list{
+  display:inline-block;
+  margin: 10px;
+  border: 1px solid #61dafb;
+  box-shadow:0 2px 2px #61dafb;
+  width: 200px;
+  padding: 20px;
+
+}
+.header{
+  display:table;
+  margin: 0 auto;
+
+}
+.logo{
+  display: table;
+  position: absolute;
+  margin-left:350px;
+  padding:10px;
+  width:150px;
+  height: 150px;
+}
+.cart {
+  display:table;
+  margin:0px 600px;
+}
+.clear-cart{
+  display:block;
+}
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
