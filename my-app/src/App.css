@@ -25,3 +25,7 @@ td {
   align-content: center;
   text-align: center;
 }
+
+.hide-item {
+  display: none;
+}
