@@ -1,0 +1,40 @@
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#F5B355;
+    border-radius: 25px 25px 0 0 ;
+    margin-top: 30px;
+    margin-left: 120px;
+    margin-right: 120px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: #f5f2e7;
+    text-align: center;
+    font-size: 25px;
+    padding: 15px 15px;
+    margin-left: 80px;
+    margin-right: 80px;
+    text-decoration: none;
+    text-shadow: 
+      0 -1px 0 #fff, 
+      0 1px 0 #2e2e2e, 
+      
+      
+     
+     
+  }
+  
+  li a:hover {
+    background-color: #F5B355;
+    color: #302f2f;
+  }
