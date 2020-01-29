@@ -1,0 +1,15 @@
+.cart-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 20px;
+    margin:  0 auto;
+    border: 2px solid #F5B355;
+    width: 450px;
+}
+
+button{
+  cursor:pointer;
+}
