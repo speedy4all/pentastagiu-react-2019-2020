@@ -11,7 +11,7 @@ import './App.css';
       carListLoading: true,
       cartItems:[],
       cartItemsLoading: true,
-      titleList: {title: "Homework3", subtitle: "carStuff"}
+      titleList: {title: "Homework", subtitle: "carStuff"}
     };
 
     componentDidMount () {
@@ -25,15 +25,62 @@ import './App.css';
             {id: 5, brand: "Toyota", power:"110HP", productionYear: "2013", color: "green", price: "12687"},
             {id: 6, brand: "Seat", fuel: "diesel", power:"80HP", color: "black"}
           ],
-          cartItems: [
-            {id: 1, brand: "Audi", fuel: "gas", productionYear: "2014", color: "red", price: "16744"},
-            {id: 4, brand: "Dacia", fuel: "gas", power: "350HP", productionYear: "2006", price: "245144"},
-            {id: 5, brand: "Toyota", power:"110HP", productionYear: "2013", color: "green", price: "12687"},
-          ],
           carListLoading: false,
           cartItemsLoading: false
         })
-      }, 3000);
+      }, 1000);
+    }
+
+    addToCart = (itemId) => {
+      const itemToAdd = [...this.state.carList].find(item => item.id === itemId);
+      const copyOfItemToAdd = Object.assign({}, itemToAdd);
+      const cartItems = [...this.state.cartItems];
+      const indexOfCartItem = cartItems.findIndex(item => item.id === itemId);
+      if (indexOfCartItem === -1) {
+        copyOfItemToAdd.qty = 1;
+        cartItems.push(copyOfItemToAdd);
+      } else {
+        copyOfItemToAdd.qty = cartItems[indexOfCartItem].qty + 1;
+        cartItems.splice(indexOfCartItem, 1, copyOfItemToAdd);
+      }
+      this.setState({
+        cartItems
+      });
+    }
+
+    removeItem = (itemId) => {
+      const cartItems = this.state.cartItems.reduce( (newArr, item) => {
+        if (item.id !== itemId) {
+          newArr.push(item);
+          return newArr;
+        }
+        return newArr;
+      },[]);
+      this.setState({
+        cartItems
+      })
+    }  
+
+    newQty = (itemId, e) => {
+      const operator = e.currentTarget.getAttribute('data-direction');
+      const cartItems = [...this.state.cartItems];
+      const indexOfCartItem = cartItems.findIndex(item => item.id === itemId);
+      const copyOfCartItem = Object.assign({}, cartItems[indexOfCartItem]);
+      switch (operator) {
+        case "+":
+          copyOfCartItem.qty++;
+          break;
+        default:
+          copyOfCartItem.qty--;
+      }
+      if (copyOfCartItem.qty === 0) {
+        cartItems.splice(indexOfCartItem, 1);
+      } else {
+        cartItems.splice(indexOfCartItem, 1, copyOfCartItem);
+      }
+      this.setState({
+        cartItems
+      })
     }
 
     render() {
@@ -52,10 +99,11 @@ import './App.css';
                       <th>Production year</th>
                       <th>Color</th>
                       <th>Price</th>
+                      <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  { this.state.carList.map(car => <Car key = { car.id } {...car} /> ) }
+                  { this.state.carList.map(car => <Car key = { car.id } {...car} addToCart = { this.addToCart }/> ) }
                 </tbody>
               </table>)}
           </div>
@@ -67,10 +115,12 @@ import './App.css';
                       <th>Brand</th>
                       <th>Power</th>
                       <th>Price</th>
+                      <th>Qty</th>
+                      <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  { this.state.cartItems.map(car => <CartItem key = { car.id } {...car} /> ) }
+                  { this.state.cartItems.map(car => <CartItem key = { car.id } {...car} removeItem = { this.removeItem } newQty = { this.newQty } /> ) }
                 </tbody>
               </table>)}
           </div>
