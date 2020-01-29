@@ -1,10 +1,22 @@
 {
     "movies": [
         {
-            "id": 2,
+            "id": 1,
             "movieTitle": "The Dark Knight",
             "price": 40,
             "date": "03/03/2020"
+        },
+        {
+            "id": 2,
+            "movieTitle": "Wall-E",
+            "price": 21,
+            "date": "12/03/2020"
+        },
+        {
+            "id": 3,
+            "movieTitle": "X-Men",
+            "price": 27,
+            "date": "22/02/2020"
         }
     ],
     "profile": {
