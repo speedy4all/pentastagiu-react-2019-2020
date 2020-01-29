@@ -1,0 +1,15 @@
+{
+    "movies": [
+        {
+            "id": 2,
+            "movieTitle": "The Dark Knight",
+            "price": 40,
+            "date": "03/03/2020"
+        }
+    ],
+    "profile": {
+        "username": "testuser",
+        "firstName": "John",
+        "lastName": "Spencer"
+    }
+}

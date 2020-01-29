@@ -1,0 +1,28 @@
+.list-container {
+  padding: 40px 20%;
+  display: flex;
+}
+
+.list-container .item, .cart-container .cart-item {
+  border: 1px solid #3c3c3c;
+  padding: 10px;
+  display: flex;
+  margin: 10px;
+}
+
+.list-container .item {
+  flex-direction: column;
+}
+
+.cart-container {
+  flex-direction: row;
+  width: 100%;
+}
+
+.cart-container .cart-item {
+  justify-content: space-between;
+}
+
+.hover {
+  background-color: cadetblue;
+}
