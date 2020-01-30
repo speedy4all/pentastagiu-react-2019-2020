@@ -1,12 +1,25 @@
-.App {
-  min-height: 100vh;
-  background-color: rgb(141, 141, 219);
+.list-container {
+  padding: 40px 20%;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-span {
+.list-container .item, .cart-container .cart-item {
+  border: 1px solid #3c3c3c;
+  padding: 10px;
+  display: flex;
   margin: 5px;
+}
+
+.list-container .item {
+  flex-direction: column;
+}
+
+.cart-container {
+  flex-direction: row;
+  width: 100%;
+}
+
+.cart-container .cart-item {
+  justify-content: space-between;
 }
 
