@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Header from "./components/header/header";
-import Laptop from "./components/laptop/laptop";
+//import Laptop from "./components/laptop/laptop";
 import CartItem from "./components/cartItem/cartitem";
+import LaptopList from "./components/laptoplist/laptoplist";
+import { LocalContext } from "./context";
+import { ThemeContext } from "./context";
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +14,9 @@ class App extends Component {
     this.state = {
       laptops: [],
       laptopsCart: [],
-      showInfo: false
+      showInfo: false,
+      type: "new",
+      theme: ""
     };
   }
 
@@ -60,19 +65,17 @@ class App extends Component {
     this.setState({ showInfo: !this.state.showInfo });
   };
 
-  renderList = () =>
-    this.state.laptops.map(laptop => (
-      <Laptop
-        className="col-sm-6"
-        addToCart={this.addToCart}
-        key={laptop.id}
-        itemId={laptop.id}
-        name={laptop.name}
-        description={laptop.description}
-        color={laptop.color}
-        price={laptop.price}
-      />
-    ));
+  changeType = () => {
+    this.setState({ type: "refurbished" });
+  };
+
+  changeTheme = () => {
+    this.setState({ theme: "bg-info" });
+  };
+  renderList = () => (
+    <LaptopList items={this.state.laptops} addToCart={this.addToCart} />
+  );
+
   renderCart = () =>
     this.state.laptopsCart.map((item, index) => (
       <CartItem
@@ -87,6 +90,7 @@ class App extends Component {
         price={item.price}
         count={item.count}
         decreaseCount={this.removeOneFromCart}
+        type={this.state.type}
       />
     ));
   cleanCart = () => {
@@ -144,29 +148,48 @@ class App extends Component {
     const { showInfo } = this.state;
 
     return (
-      <div className="container">
-        <Header branding="Laptop Store" headline="Super Price" />
-        <div className="text-center my-3">
-          <button
-            type="button"
-            className="btn btn-outline-info btn-sm "
-            onClick={this.onShowClick}
-          >
-            Show Products
-          </button>
-        </div>
-        <button
-          type="button"
-          className="btn btn-outline-info btn-sm "
-          onClick={this.cleanCart}
-        >
-          Clear Cart
-        </button>
-        <div className="row bg-light">
-          {showInfo ? this.renderCart() : null}
-        </div>
-        <div className="row">{showInfo ? this.renderList() : null}</div>
-      </div>
+      <ThemeContext.Provider value={{ theme: this.state.theme }}>
+        <LocalContext.Provider value={{ type: this.state.type }}>
+          <div className="container">
+            <Header branding="Laptop Store" headline="Super Price" />
+            <div className="text-center my-3">
+              <button
+                type="button"
+                className="btn btn-outline-info btn-sm "
+                onClick={this.onShowClick}
+              >
+                Show Products
+              </button>
+            </div>
+            <button
+              type="button"
+              className="btn btn-outline-info btn-sm mr-2"
+              onClick={this.cleanCart}
+            >
+              Clear Cart
+            </button>
+            <span className="badge badge-pill badge-warning">
+              {this.state.type}
+            </span>
+            <button
+              className="btn btn-outline-info btn-sm ml-2"
+              onClick={this.changeType}
+            >
+              Change Type
+            </button>
+            <button
+              className="btn btn-outline-info btn-sm float-right"
+              onClick={this.changeTheme}
+            >
+              Change Theme
+            </button>
+            <div className="row bg-light">
+              {showInfo ? this.renderCart() : null}
+            </div>
+            <div className="row">{showInfo ? this.renderList() : null}</div>
+          </div>
+        </LocalContext.Provider>
+      </ThemeContext.Provider>
     );
   }
 }
