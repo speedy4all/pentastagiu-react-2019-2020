@@ -6,11 +6,13 @@ class CartItem extends Component {
       nextProps.name !== this.props.name ||
       nextProps.description !== this.props.description ||
       nextProps.color !== this.props.color ||
-      nextProps.price !== this.props.price
+      nextProps.price !== this.props.price ||
+      (nextProps.count && nextProps.count !== this.props.count)
     );
   }
   render() {
-    const { name, description, color, price, itemId } = this.props;
+    console.log(this.props);
+    const { name, description, color, price, itemId, count } = this.props;
     return (
       <div className="card mx-2 my-2" style={{ width: "18vw" }}>
         <div className="card-header d-flex flex-row text-warning justify-content-between font-weight-bold">
@@ -32,14 +34,16 @@ class CartItem extends Component {
         </ul>
         <div className="d-flex flex-row justify-content-center">
           <button
-            onClick={() => this.props.increment(itemId)}
+            onClick={() => this.props.add(itemId)}
             className="btn btn-danger btn-sm"
           >
             +
           </button>
-          <span className="mx-2 my-2">{this.props.counter}</span>
+          <span className="badge badge-pill badge-warning mx-2 my-2">
+            {count}
+          </span>
           <button
-            onClick={() => this.props.decrement(itemId)}
+            onClick={() => this.props.decreaseCount(itemId)}
             className="btn btn-danger btn-sm"
           >
             -
