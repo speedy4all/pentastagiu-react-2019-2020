@@ -5,6 +5,8 @@ import Header from "./components/Header/Header.jsx";
 import Cars from "./components/Cars/Cars.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import * as list from './store';
+import LocalContext from './context';
+import Select from './components/Select/Select.jsx';
 
 
 Array.prototype.getRandomItem = function () {
@@ -23,7 +25,8 @@ class App extends Component {
             cars: [],
             cartItems: [],
             loadingCars: true,
-            loadingCartItems: true
+            loadingCartItems: true,
+            currency: '€'
         };
     }
 
@@ -101,12 +104,27 @@ class App extends Component {
         this.setState({ cartItems: cartItems });
     }
 
+    changeCurrency = event => {
+
+        this.setState({ currency: event.target.value });
+    }
+
     render() {
         return (
-            <div className="container">
+            <LocalContext.Provider  value={ this.state.currency }>
+                <div className="container">
                 <Header {...this.state.header} />
 
                 <br />
+
+                <div className="row">
+                    <div className="col-md-4">
+                        <Select changeCurrency={ this.changeCurrency }/>
+                    </div>
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4"></div>
+                </div>
+
                 <br />
 
                 <div className="row">
@@ -127,6 +145,7 @@ class App extends Component {
                     </div>
                 </div>
             </div>
+            </LocalContext.Provider>
         );
     }
 }
