@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 
 import CartItem from './CartItem/CartItem.jsx';
 import Spinner from '../Spinner/Spinner.jsx';
-import cartItem from './CartItem/CartItem.jsx';
+import LocalContext from '../../context';
 
 
 class Cart extends Component {
 
+    static contextType = LocalContext;
+
     showCartItems = () => {
-        return this.props.items.map(item => <CartItem 
+        return this.context.cartItems.map(item => <CartItem 
                 key={ item.id } 
                 { ...item } 
-                increaseCartItemProduct={this.props.increaseCartItemProduct}
-                decreaseCartItemProduct={this.props.decreaseCartItemProduct}
+                increaseCartItemProduct={this.context.increaseCartItemProduct}
+                decreaseCartItemProduct={this.context.decreaseCartItemProduct}
             />);
     }
 
@@ -22,7 +24,7 @@ class Cart extends Component {
 
         let html = cartItems.length > 0 ? cartItems : <h5>There is no item in the cart.</h5>;
 
-        if(this.props.isLoading){
+        if(this.context.loadingCartItems){
             html = <Spinner />
         }
 

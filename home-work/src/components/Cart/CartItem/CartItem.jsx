@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Button from '../../Button/Button.jsx';
@@ -6,6 +6,8 @@ import LocalContext from '../../../context';
 
 
 const cartItem = props => {
+
+    const localContext = useContext(LocalContext);
 
     const style = {
         display: 'block',
@@ -15,50 +17,44 @@ const cartItem = props => {
     };
 
     return (
-        <LocalContext.Consumer>
-        {
-            value => (
-                <span style={ style }>
-                    <span>Produs: { props.product }</span>
-                    <br />
-                    <span>Pret: { `${props.price} ${value}` }</span>
-                    <br />
-                    <span>Data comenzii: { props.date }</span>
-                    <br />
-                    <span>Cumparator: { props.customer }</span>
-                    <br />
-                    <span>Adresa: { props.address }</span>
+        <span style={ style }>
+            <span>Produs: { props.product }</span>
+            <br />
+            <span>Pret: { `${props.price} ${localContext.currency}` }</span>
+            <br />
+            <span>Data comenzii: { props.date }</span>
+            <br />
+            <span>Cumparator: { props.customer }</span>
+            <br />
+            <span>Adresa: { props.address }</span>
 
-                    <hr />
+            <hr />
 
-                    <div className="row">
-                        <div className="col-md-3">
-                            <Button 
-                                btnType="danger"
-                                onClickHandler={() => props.decreaseCartItemProduct(props.id)}
-                            >
-                                {
-                                    props.productsNumber < 1 ? 'DELETE' : 'MINUS'
-                                }
-                            </Button>
-                        </div>
-                        <div className="col-md-6" style={{ textAlign: 'center', fontWeight: 'bold' }}>
-                            { props.productsNumber }
-                        </div>
-                        <div className="col-md-3">
-                            <Button 
-                                btnType="primary"
-                                value={props.id}
-                                onClickHandler={() => props.increaseCartItemProduct(props.id)}
-                            >
-                                PLUS
-                            </Button>
-                        </div>
-                    </div>
-                </span>
-            )
-        }
-        </LocalContext.Consumer>
+            <div className="row">
+                <div className="col-md-3">
+                    <Button 
+                        btnType="danger"
+                        onClickHandler={() => props.decreaseCartItemProduct(props.id)}
+                    >
+                        {
+                            props.productsNumber < 1 ? 'DELETE' : 'MINUS'
+                        }
+                    </Button>
+                </div>
+                <div className="col-md-6" style={{ textAlign: 'center', fontWeight: 'bold' }}>
+                    { props.productsNumber }
+                </div>
+                <div className="col-md-3">
+                    <Button 
+                        btnType="primary"
+                        value={props.id}
+                        onClickHandler={() => props.increaseCartItemProduct(props.id)}
+                    >
+                        PLUS
+                    </Button>
+                </div>
+            </div>
+        </span>
     );
 }
 

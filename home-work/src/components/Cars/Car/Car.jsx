@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { TableCell, TableRow, Button } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
@@ -6,6 +6,8 @@ import LocalContext from '../../../context';
 
 
 const car = props => {
+
+    const localContext = useContext(LocalContext);
     
     const style = {
         display: 'inline-block',
@@ -15,33 +17,27 @@ const car = props => {
     }
 
     return (
-        <LocalContext.Consumer>
-        {
-            value => (
-                <TableRow>
-                    <TableCell component="th" scope="row">{props.id}</TableCell>
-                    <TableCell>{props.mark}</TableCell>
-                    <TableCell>{props.model}</TableCell>
-                    <TableCell>
-                        <span style={{ ...style, backgroundColor: props.color }}></span>
-                    </TableCell>
-                    <TableCell>
-                        { `${props.price} ${value}` }
-                    </TableCell>
-                    <TableCell>
-                        <Button 
-                            variant="outlined" 
-                            color="secondary" 
-                            size="small"
-                            onClick={ () => props.addCartItem(props.id) }
-                        >
-                            <AddShoppingCart />
-                        </Button>
-                    </TableCell>
-                </TableRow>
-            )
-        }
-        </LocalContext.Consumer>
+        <TableRow>
+            <TableCell component="th" scope="row">{props.id}</TableCell>
+            <TableCell>{props.mark}</TableCell>
+            <TableCell>{props.model}</TableCell>
+            <TableCell>
+                <span style={{ ...style, backgroundColor: props.color }}></span>
+            </TableCell>
+            <TableCell>
+                { `${props.price} ${localContext.currency}` }
+            </TableCell>
+            <TableCell>
+                <Button 
+                    variant="outlined" 
+                    color="secondary" 
+                    size="small"
+                    onClick={ () => props.addCartItem(props.id) }
+                >
+                    <AddShoppingCart />
+                </Button>
+            </TableCell>
+        </TableRow>
     );
 }
 

@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import LocalContext from '../../context';
 
 
-const select = ({ changeCurrency }) => {
+const select = ({ changeCurrency, options }) => {
+
+    const localContext = useContext(LocalContext);
 
     return (
         <div className="form-group">
-            <select className="form-control" onChange={ changeCurrency }>
-                <option value="€">Choose currency:</option>
-                <option value="€">Euro</option>
-                <option value="$">Dolar</option>
-                <option value="₤">Lira</option>
-                <option value="₿">Bitcoin</option>
+            <select className="form-control" onChange={ localContext.changeCurrency }>
+            {
+               options.map(option => <option value={option[0]} key={option[1]}>{option[1]}</option>) 
+            } 
             </select>
         </div>
     );
