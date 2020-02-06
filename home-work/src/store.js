@@ -72,3 +72,11 @@ export const customers = [
         address: 'Romania, Brasov'
     }
 ];
+
+export const currency = [
+    ['€', 'Choose currency:'],
+    ['€', 'Euro'],
+    ['$', 'Dolar'],
+    ['₤', 'Lira'],
+    ['₿', 'Bitcoin']
+];

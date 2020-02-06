@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { TableCell, TableRow, Button } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
+import LocalContext from '../../../context';
 
 
 const car = props => {
 
+    const localContext = useContext(LocalContext);
+    
     const style = {
         display: 'inline-block',
         width: '25px',
@@ -20,7 +24,9 @@ const car = props => {
             <TableCell>
                 <span style={{ ...style, backgroundColor: props.color }}></span>
             </TableCell>
-            <TableCell>{props.price}</TableCell>
+            <TableCell>
+                { `${props.price} ${localContext.currency}` }
+            </TableCell>
             <TableCell>
                 <Button 
                     variant="outlined" 

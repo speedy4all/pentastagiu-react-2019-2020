@@ -11,12 +11,15 @@ import {
 
 import Car from './Car/Car.jsx';
 import Spinner from '../Spinner/Spinner.jsx';
+import LocalContext from '../../context';
 
 
 class Cars extends Component {
 
+    static contextType = LocalContext;
+
     showCars = () => {
-        return this.props.items.map(car => <Car key={car.id} {...car} addCartItem={ this.props.addCartItem } />);
+        return this.context.cars.map(car => <Car key={car.id} {...car} addCartItem={ this.context.addCartItem } />);
     }
 
     render() {
@@ -43,7 +46,7 @@ class Cars extends Component {
             </TableContainer>
         );
 
-        if (this.props.isLoading) {
+        if (this.context.loadingCars) {
             html = <Spinner />;
         }
 

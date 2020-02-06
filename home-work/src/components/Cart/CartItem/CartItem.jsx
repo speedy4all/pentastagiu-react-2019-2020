@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Button from '../../Button/Button.jsx';
+import LocalContext from '../../../context';
 
 
 const cartItem = props => {
+
+    const localContext = useContext(LocalContext);
 
     const style = {
         display: 'block',
@@ -15,10 +18,9 @@ const cartItem = props => {
 
     return (
         <span style={ style }>
-
             <span>Produs: { props.product }</span>
             <br />
-            <span>Pret: { props.price }</span>
+            <span>Pret: { `${props.price} ${localContext.currency}` }</span>
             <br />
             <span>Data comenzii: { props.date }</span>
             <br />
@@ -52,7 +54,6 @@ const cartItem = props => {
                     </Button>
                 </div>
             </div>
-
         </span>
     );
 }
