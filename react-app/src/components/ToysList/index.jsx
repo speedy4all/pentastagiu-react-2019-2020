@@ -3,12 +3,12 @@ import Toys from '../ToysItem';
 import {AppContext} from '../../context';
 
 export default class ToysList extends Component {
-  static contextType = AppContext
+  static contextType = AppContext;
 
     render() { 
         return (
         <div className='list-container'>
-        {this.context.items.map(toys => (
+        {this.context.toys.map(toys => (
                 <Toys
                   key={toys.id}
                   {...toys} 

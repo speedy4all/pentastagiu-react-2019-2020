@@ -13,7 +13,7 @@ export default class Hover extends Component {
             onMouseOver={this.hoverIn} 
             onMouseOut={this.hoverOut}  
             >
-                {this.props.render(this.state.isHover)}
+                {this.props.render ? this.props.render(this.state.isHover) : this.props.children(this.state.isHover)}
             </div>
 
         )
