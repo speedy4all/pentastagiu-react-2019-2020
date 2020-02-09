@@ -1,0 +1,7 @@
+.CartItemContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 600px; 
+    overflow-x: auto;
+}

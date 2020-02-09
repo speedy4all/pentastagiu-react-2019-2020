@@ -1,28 +1,23 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { TableCell, TableRow, Button } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 import LocalContext from '../../../context';
+import './Car.css';
 
 
 const car = props => {
 
     const localContext = useContext(LocalContext);
     
-    const style = {
-        display: 'inline-block',
-        width: '25px',
-        height: '25px',
-        borderRadius: '50%'
-    }
-
     return (
         <TableRow>
             <TableCell component="th" scope="row">{props.id}</TableCell>
             <TableCell>{props.mark}</TableCell>
             <TableCell>{props.model}</TableCell>
             <TableCell>
-                <span style={{ ...style, backgroundColor: props.color }}></span>
+                <span className="CarColor" style={{ backgroundColor: props.color }}></span>
             </TableCell>
             <TableCell>
                 { `${props.price} ${localContext.currency}` }
@@ -36,6 +31,7 @@ const car = props => {
                 >
                     <AddShoppingCart />
                 </Button>
+                <Link to={'/car/' + props.id}>View</Link>
             </TableCell>
         </TableRow>
     );

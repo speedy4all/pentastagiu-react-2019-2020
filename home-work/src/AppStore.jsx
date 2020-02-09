@@ -15,8 +15,12 @@ class AppStore extends Component {
 
         this.state = {
             header: {
-                title: "Cars",
-                subtitle: "Cars List"
+                title: "Car Shop",
+                links: [
+                    { name: 'Cars', path: '/cars'},
+                    { name: 'Cart', path: '/cart'},
+                    { name: 'Settings', path: '/settings'}
+                ]
             },
             cars: [],
             loadingCars: true,

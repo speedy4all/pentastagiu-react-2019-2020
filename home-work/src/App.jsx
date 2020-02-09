@@ -1,40 +1,46 @@
 import React, { Component } from "react";
+import { Route, Switch } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Header from "./components/Header/Header.jsx";
 import Cars from "./components/Cars/Cars.jsx";
 import Cart from "./components/Cart/Cart.jsx";
-import * as list from './store';
-import Select from './components/Select/Select.jsx';
+import Settings from './components/Settings/Settings';
+import ShowCar from './components/Cars/ShowCar/ShowCar';
 
 
 class App extends Component {
     
     render() {
         return (
-                <div className="container">
+            <div className="container">
+
                 <Header />
 
                 <br />
 
-                <div className="row">
-                    <div className="col-md-4">
-                        <Select options={list.currency} />
-                    </div>
-                    <div className="col-md-4"></div>
-                    <div className="col-md-4"></div>
-                </div>
-
-                <br />
-
-                <div className="row">
-                    <div className="col-md-8">
+                <Switch>
+                    <Route path="/" exact>
                         <Cars />
-                    </div>
-                    <div className="col-md-4" style={{height: '650px', overflowX: 'auto'}}>
+                    </Route>
+
+                    <Route path="/cars">
+                        <Cars />
+                    </Route>
+
+                    <Route path="/car/:carId">
+                        <ShowCar />
+                    </Route>
+                    
+                    <Route path="/cart">
                         <Cart />
-                    </div>
-                </div>
+                    </Route>
+                    
+                    <Route path="/settings">
+                        <Settings />
+                    </Route>
+                </Switch>
+                
             </div>
         );
     }
