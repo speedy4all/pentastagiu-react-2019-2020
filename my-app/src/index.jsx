@@ -5,11 +5,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import AppStore from "./Components/AppStore";
 import { Theme } from "./Components/Theme";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import MountainList from "./Components/mountainsList";
 
 ReactDOM.render(
   <AppStore>
     <Theme>
-      <App />
+     <App /> 
     </Theme>
   </AppStore>,
   document.getElementById("root")

@@ -4,7 +4,12 @@ import { AppContext } from "../../Context/context";
 
 export default class MountainList extends Component {
   static contextType = AppContext;
+  handleClick = () => {
+    const {history} = this.props;
+    history.push('/home');
+  };
   render() {
+    console.log(this.props);
     return (
       <div className="mountains-container">
         {this.context.mountains.map(mountain => (
@@ -19,6 +24,7 @@ export default class MountainList extends Component {
           // cottage={mountain.cottage}
         />
         ))}
+        <button onClick={this.handleClick}>Go to Home</button>
       </div>
     );
   }

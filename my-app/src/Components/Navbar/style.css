@@ -1,0 +1,20 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: left;
+  min-height: 10vh;
+  padding: 0 10px;
+  background: rgb(58, 58, 63);
+}
+.navbar-links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+.navbar-link {
+  color: white;
+  text-decoration: none;
+}
+
