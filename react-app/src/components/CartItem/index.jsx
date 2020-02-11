@@ -15,7 +15,7 @@ export class CartItem extends React.PureComponent {
                             <span>{this.props.price} Lei </span>
                             <span>Language: {this.props.language}</span>
                             <button onClick={() => this.props.add(this.props.itemId)}>+</button>
-                            <button onClick={() => this.props.decreseCount(this.props.itemId)}>-</button>
+                            <button onClick={() => this.props.decreaseCount(this.props.itemId)}>-</button>
                             <button onClick={() => this.props.remove(this.props.itemId)}>X</button>
                         </div>
                     );

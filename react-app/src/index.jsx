@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import AppStore from './AppStore';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+import ToysList from './components/ToysList';
+
+
 
 ReactDOM.render(
     <AppStore> 
-        <App /> 
+<App />
     </AppStore>, 
     document.getElementById('root'));
 

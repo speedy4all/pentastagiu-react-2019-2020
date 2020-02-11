@@ -11,7 +11,7 @@ export default class AppStore extends Component {
           itemLoaded: false,
           cartList: [],
           listLoaded: false,
-          language: 'en',
+          language: "en"
         };
       }
     
@@ -36,7 +36,7 @@ export default class AppStore extends Component {
     };
 
     removeFromCart = itemId => {
-      const cartUpdated = this.state.cartList.filter(x => x.id !== itemId);
+      const cartUpdated = this.state.cartList.filter(toys => toys.id !== itemId);
       this.setState({cartList: cartUpdated});
     };
 

@@ -6,8 +6,8 @@ import { useContext } from 'react';
 export default function Toys(props) {
 
 const {addToCart} = useContext(AppContext);
-const {style} = useContext(style);
-const {language} = useContext(language);
+const {style} = useContext(ThemeContext);
+const {language} = useContext(LocaleContext);
     
 
         return (

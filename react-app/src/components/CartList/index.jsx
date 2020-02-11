@@ -1,10 +1,9 @@
-import React from 'react';
-import { useContex } from 'react';
+import React, {useContext} from 'react';
 import { AppContext } from '../../context';
 import { CartItem } from '../CartItem';
 
 export default function CartList() {
-    const appContext = useContex(AppContext);
+    const appContext = useContext(AppContext);
 
     return appContext.cartList.map((cartItem, index) => (
         <CartItem

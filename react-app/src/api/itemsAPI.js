@@ -15,7 +15,7 @@ export const fetchItemsList = async () => {
 export const removeOneFromCartAPI = (itemId, cartList) => {
 
     let cartListUpdated = cartList.slice();
-    const itemToRemove = cartListUpdated.filter( x => x.id === itemId );
+    const itemToRemove = cartListUpdated.find( x => x.id === itemId );
 
     if (itemToRemove && itemToRemove.count === 1) {
         cartListUpdated = cartListUpdated.filter( x => x.id !== itemId );
