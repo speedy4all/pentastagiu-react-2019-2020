@@ -7,7 +7,7 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import { ThemeToggle } from "./Components/ThemeToggle";
 import { LocalContext, AppContext } from "./Context/context";
-import { Link, Route, BrowserRouter as Router } from "react-router-dom";
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Navbar from "./Components/Navbar";
 import Trip from "./Components/trip";
@@ -33,10 +33,13 @@ export default class App extends React.Component {
             />
           </header>
           <Navbar />
-          <Route path="/home" component={Home} />
+          <Switch>
           <Route path="/about" component={About} />
-          <Route exact path="/trip" component={Trip} />
+          <Route path="/trip" component={Trip} />
+          <Route path="/" component={Home} />
+          </Switch>
           <Route exact path="/trip/mountain" component={MountainList} />
+          
 
           {/* <div className="cart-container">
             <CartList />

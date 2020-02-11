@@ -1,13 +1,13 @@
 import React from 'react';
 import './style.css';
-import { Link, Route } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 const Navbar = () => (
     <nav className="navbar">
         <ul className="navbar-links">
-          <li><Link to="/home" className="navbar-link">Home</Link></li>
-          <li><Link to="/About"className="navbar-link">About</Link></li>
-          <li><Link to="/Trip" className="navbar-link">Trips</Link></li>
+          <li><NavLink to="/" className="navbar-link">Home</NavLink></li>
+          <li><NavLink to="/about"className="navbar-link">About</NavLink></li>
+          <li><NavLink to="/trip" className="navbar-link">Trips</NavLink></li>
         </ul>
     </nav>
 );
