@@ -1,23 +1,26 @@
 import React from "react";
 import Logo from "../../assets/laptop.svg";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   const { branding, headline } = props;
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-info mb-3 py-0">
       <div className="container">
-        <img src={Logo} width="40" height="40" alt=""></img>
+        <Link to="/">
+          <img src={Logo} width="40" height="40" alt=""></img>
+        </Link>
         <div>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a href="false" to="/headline" className="nav-link">
+              <Link to="/Refurbished" className="nav-link">
                 {headline}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a href="false" to="/branding" className="nav-link">
+              <Link to="/About" className="nav-link">
                 {branding}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
