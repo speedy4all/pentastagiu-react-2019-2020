@@ -1,9 +1,12 @@
 import React from 'react';
 import Header from './header/Header';
-import MainContainer from './components/MainContainer';
+import Products from './components/Products';
+import Home from './Home/Home';
+import About from './About/About';
 import { DisplayListContext, CurrencyContext } from './context/context';
 import './App.css';
-
+import { BrowserRouter, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
   class App extends React.Component {
     state = {
@@ -30,16 +33,22 @@ import './App.css';
 
     render() {
       return (
-        <DisplayListContext.Provider value={ {display: this.state.listToDisplay} }>
-          <Header 
-          {...this.state.titleList} 
-          toggleList={ this.changeDisplayList }
-          changeCurrency={ this.changeCurrency }
-          currencyList={ this.state.currencyList }/>
-          <CurrencyContext.Provider value={ {currency: this.state.currency} }>            
-            <MainContainer />
-          </CurrencyContext.Provider>
-        </DisplayListContext.Provider>
+        <BrowserRouter history={ createBrowserHistory() }>
+          <DisplayListContext.Provider value={ {display: this.state.listToDisplay} }>
+            <Header 
+            {...this.state.titleList} 
+            toggleList={ this.changeDisplayList }
+            changeCurrency={ this.changeCurrency }
+            currencyList={ this.state.currencyList }/>
+            <CurrencyContext.Provider value={ {currency: this.state.currency} }>            
+              <Route path='/home' component={Home} />
+              <Route path='/about' component={About} />
+              <Route path='/products'>
+                <Products toggleList={ this.changeDisplayList } />
+              </Route>
+            </CurrencyContext.Provider>
+          </DisplayListContext.Provider>
+        </BrowserRouter>
       )}
   }
 

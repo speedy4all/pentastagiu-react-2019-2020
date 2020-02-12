@@ -3,8 +3,7 @@ import Car from './Car';
 import CartItem from './CartItem';
 import { DisplayListContext } from '../context/context';
 
-
-  class MainContainer extends React.Component {
+  class Products extends React.Component {
     state = {
       carList: [],
       carListLoading: true,
@@ -94,47 +93,50 @@ import { DisplayListContext } from '../context/context';
       return (
         <DisplayListContext.Consumer>
             {(contextValue) => (
-        <div className='list-container'>
-          <div className={ contextValue.display === 'Cars' ? 'table-container' : 'hide-item' }>
-            { this.state.carListLoading?<p>Loading...</p>:(
-              <table>
-                <thead> 
-                  <tr key = 'tableHead'>
-                      <th>Brand</th>
-                      <th>Fuel</th>
-                      <th>Power</th>
-                      <th>Production year</th>
-                      <th>Color</th>
-                      <th>Price</th>
-                      <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  { this.state.carList.map(car => <Car key = { car.id } {...car} addToCart = { this.addToCart }/> ) }
-                </tbody>
-              </table>)}
-          </div>
-          <div className={ contextValue.display === 'Cart' ? 'table-container' : 'hide-item' }>
-            { this.state.carListLoading?<p>Loading...</p>:(
-              <table>
-                <thead> 
-                  <tr key = 'tableHead'>
-                      <th>Brand</th>
-                      <th>Power</th>
-                      <th>Price</th>
-                      <th>Qty</th>
-                      <th>Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  { this.state.cartItems.map(car => <CartItem key = { car.id } {...car} removeItem = { this.removeItem } newQty = { this.newQty } /> ) }
-                </tbody>
-              </table>)}
-          </div>
-        </div>) }
+          <div className='list-container'>
+            <button onClick={ () => this.props.toggleList(contextValue.display) }>
+                Show { contextValue.display === 'Cars' ? 'Cart' : 'Cars' }
+            </button>
+            <div className={ contextValue.display === 'Cars' ? 'table-container' : 'hide-item' }>
+              { this.state.carListLoading?<p>Loading...</p>:(
+                <table>
+                  <thead> 
+                    <tr key = 'tableHead'>
+                        <th>Brand</th>
+                        <th>Fuel</th>
+                        <th>Power</th>
+                        <th>Production year</th>
+                        <th>Color</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { this.state.carList.map(car => <Car key = { car.id } {...car} addToCart = { this.addToCart }/> ) }
+                  </tbody>
+                </table>)}
+            </div>
+            <div className={ contextValue.display === 'Cart' ? 'table-container' : 'hide-item' }>
+              { this.state.carListLoading?<p>Loading...</p>:(
+                <table>
+                  <thead> 
+                    <tr key = 'tableHead'>
+                        <th>Brand</th>
+                        <th>Power</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    { this.state.cartItems.map(car => <CartItem key = { car.id } {...car} removeItem = { this.removeItem } newQty = { this.newQty } /> ) }
+                  </tbody>
+                </table>)}
+            </div>
+          </div>) }
         </DisplayListContext.Consumer>
       );
     }
   }
 
-export default MainContainer;
+export default Products;
