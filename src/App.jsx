@@ -5,50 +5,40 @@ import { CartItem } from "./components/CartItem";
 import BillItemList from "./components/BillItemList";
 import { LocaleContext, ThemeContext, AppContext } from "./context";
 import CartList from "./components/CartList";
-import { BrowserRouter as Router, Route, Link, useHistory, Redirect, withRouter } from 'react-router-dom';
-import { createBrowserHistory } from "history";
+import {BrowserRouter, Link, Route} from 'react-router-dom';
 import Home from "./components/Home";
-const history = createBrowserHistory();
-function RedirectWithStatus({ from, to, status }) {
-  return (
-    <Route
-      render={({ staticContext }) => {
-        // there is no `staticContext` on the client, so
-        // we need to guard against that here
-        if (staticContext) staticContext.status = status;
-        console.log(staticContext)
-        return <Redirect from={from} to={to} />;
-      }}
-    />
-  );
-}
+import About from "./components/About";
+import AppStore from "./index";
+import {createBrowserHistory} from 'history';
 
-const Context = React.createContext();
+const history = createBrowserHistory();
+
 export default class App extends React.Component {
   static contextType = AppContext;
-
 
   render() {
     if (!this.context.itemLoaded) {
       return <div>Loading...</div>;
     }
-    console.log(this.context)
 
     return (
-      <Router history={history}>
-      <LocaleContext.Provider value={{ language: this.context.language }}>
-        <Route exact path="/list" component={BillItemList} />
-        <Route exact path="/home" component={Home} />
-        {/*<RedirectWithStatus status={404} from="/list" to="/" />*/}
-        <div className="cart-container">
-          <button onClick={this.context.cleanCart}>Remove from cart</button>
-          <span>Language: {this.context.language}</span>
-          <button onClick={this.context.changeLanguage}>Change language</button>
-          <CartList />
-        </div>
-        {/*<BillItemList />*/}
-      </LocaleContext.Provider>
-      </Router>
+      <BrowserRouter history={history}>
+        <LocaleContext.Provider value={{ language: this.context.language }}>
+          <Link to='/about'>About</Link>
+          <Link to='/home'>Home</Link>
+          <Link to='/'>Items</Link>
+          <Route exact path='/' component={BillItemList}/>
+          <Route path='/home' component={Home} />
+          <Route path='/about' component={About} />
+          <div className="cart-container">
+            <button onClick={this.context.cleanCart}>Remove from cart</button>
+            <span>Language: {this.context.language}</span>
+            <button onClick={this.context.changeLanguage}>Change language</button>
+            <CartList />
+          </div>
+
+        </LocaleContext.Provider>
+      </BrowserRouter>
     );
   }
 }
