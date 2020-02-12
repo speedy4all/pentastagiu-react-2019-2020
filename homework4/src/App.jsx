@@ -3,8 +3,6 @@ import './App.css';
 import BillItem from './components/BillItem';
 import { CartItem } from './components/CartItem';
 
-export const AppContext = React.createContext();
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
