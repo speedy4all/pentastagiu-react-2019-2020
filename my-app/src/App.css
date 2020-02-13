@@ -27,7 +27,26 @@
 .App-link {
   color: #61dafb;
 }
-
+.cart-container {
+  margin: 5px;
+  padding: 10px;
+}
+.cart-container button {
+  margin: 0 5px;
+}
+.cart-container span {
+  margin: 5px;
+}
+.mountains-container {
+  margin: 5px;
+  padding: 10px;
+}
+.mountains-container button {
+  margin: 0 5px;
+}
+.mountains-container span {
+  margin: 0 5px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
