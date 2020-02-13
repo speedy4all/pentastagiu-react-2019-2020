@@ -27,6 +27,13 @@
 .App-link {
   color: #61dafb;
 }
+header {
+  width: 1000px;
+  height: 300px;
+  background-image: url("./cruce-caraiman.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 .cart-container {
   margin: 5px;
   padding: 10px;
@@ -46,6 +53,9 @@
 }
 .mountains-container span {
   margin: 0 5px;
+}
+.hover {
+  background-color: cadetblue;
 }
 @keyframes App-logo-spin {
   from {

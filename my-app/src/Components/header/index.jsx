@@ -1,15 +1,6 @@
-import * as React from "react";
+import React, { PureComponent } from "react";
 
-export class Header extends React.PureComponent {
-  // shouldComponentUpdate(nextProps) {
-  //   if(nextProps.title !== this.props.title ||
-  //      nextProps.subtitle !== this.props.subtitle) return true;
-  //   return false;
-
-  // };
-  componentDidUpdate() {
-    console.log("randare header");
-  }
+export class Header extends PureComponent {
   render() {
     return (
       <>

@@ -1,32 +1,28 @@
-import React from "react";
-export class Mountain extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.peak !== this.props.peak ||
-      nextProps.mountain !== this.props.mountain ||
-      nextProps.county !== this.props.county ||
-      nextProps.height !== this.props.height ||
-      nextProps.cottage !== this.props.cottage
-    );
-  }
-  componentDidUpdate() {
-    console.log("randare mountains");
-  }
-  render() {
-    return (
-      <div className="mountain-item">
-        <span>Peak: {this.props.peak}</span>
-        <span>Mountains: {this.props.mountain}</span>
-        <span>County: {this.props.county}</span>
-        <span>Height: {this.props.height}m</span>
-        <span>
-          Cottage:
-          {this.props.cottage ? this.props.cottage : "There is no cottage!"}
-        </span>
-        <button onClick={() => this.props.addToCart(this.props.itemId)}>
-          Get the trip
-        </button>
-      </div>
-    );
-  }
+import React, { useContext } from "react";
+import Hover from "../hover";
+import { AppContext, ThemeContext, LocalContext } from "../../Context/context";
+
+export function Mountain(props) {
+  const { addToCart } = useContext(AppContext);
+  const {isLightTheme, dark, light} = useContext(ThemeContext);
+  const { language } = useContext(LocalContext);
+  const theme = isLightTheme ? light : dark;
+  return (
+    <Hover
+      render={isHover => (
+        <div className={`mountain-item ${isHover ? "hover" : ""}`} style={{background: theme.ui, color: theme.syntax}}>
+          <span>Peak: {props.peak}</span>
+          <span>Mountains: {props.mountain}</span>
+          <span>County: {props.county}</span>
+          <span>Height: {props.height}m</span>
+          <span>Language: {language}</span>
+          <span>
+            Cottage:
+            {props.cottage ? props.cottage : "There is no cottage!"}
+          </span>
+          <button onClick={() => addToCart(props.itemId)}>Get the trip</button>
+        </div>
+      )}
+    />
+  );
 }
