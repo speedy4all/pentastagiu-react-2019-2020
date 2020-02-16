@@ -1,7 +1,7 @@
-import * as React from "react";
+import React, {PureComponent} from "react";
 import Hover from "../hover";
 import { ThemeContext } from "../../Context/context";
-export class CartItem extends React.PureComponent {
+export class CartItem extends PureComponent {
   static contextType = ThemeContext;
   render() {
     const { isLightTheme, dark, light } = this.context;
@@ -29,7 +29,6 @@ export class CartItem extends React.PureComponent {
               <button onClick={() => this.props.increase(this.props.itemId)}>
                 +
               </button>{" "}
-              {/* // it works but it's not good, i'll update it */}
               <button onClick={() => this.props.remove(this.props.itemId)}>
                 x
               </button>

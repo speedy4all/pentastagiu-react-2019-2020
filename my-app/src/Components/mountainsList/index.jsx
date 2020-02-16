@@ -17,11 +17,6 @@ export default class MountainList extends Component {
           key={mountain.id}
           itemId={mountain.id}
           {...mountain}
-          // peak={mountain.peak}
-          // mountain={mountain.mountain}
-          // county={mountain.county}
-          // height={mountain.height}
-          // cottage={mountain.cottage}
         />
         ))}
         <button onClick={this.handleClick}>Go to Home</button>

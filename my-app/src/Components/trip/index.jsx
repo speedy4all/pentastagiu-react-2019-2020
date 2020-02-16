@@ -15,10 +15,10 @@ const Trip = ({match}) => {
             <li><Link to={`${match.url}/spa`}>SPA Resorts</Link></li>
             <li><Link to={`${match.url}/seaTrip`}>Sea Trips</Link></li>
         </ul>
-        <switch>
+        {/* <switch>
         <Route exact path={`${match.path}/spa`} component={SpaResort}/>
         <Route exact path={`${match.path}/seaTrip`} component={SeaTrip}/>
-        </switch>
+        </switch> */}
     </div>
 )};
 

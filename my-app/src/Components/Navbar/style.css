@@ -1,5 +1,5 @@
 .navbar {
-  display: flex;
+  /* display: block; */
   justify-content: space-around;
   align-items: left;
   min-height: 10vh;
