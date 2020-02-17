@@ -2,12 +2,13 @@ import React, {useContext} from "react";
 import AppHeader from "../app-header";
 import BoxList from "../box-list";
 import CartList from "../cart-list";
+import {withRouter} from "react-router-dom";
 
 import {ThemeContext, LocalContext, AppContext} from "../context/context";
 
 import logo from "./car-logo.png";
 
-const App = () => {
+const App = ({location}) => {
     const {
         themeColor,
         currency,
@@ -24,6 +25,8 @@ const App = () => {
         addToCart
     } = useContext(AppContext);
 
+    const {pathname} = location;
+
     return (
         <ThemeContext.Provider
             value={{
@@ -38,15 +41,17 @@ const App = () => {
                     </div>
                     <LocalContext.Provider value={{currency}}>
                         <div className="box-container">
-                            <CartList cartItems={cartItems} cartItemsLoaded={cartItemsLoaded}
+                            <CartList cartItems={cartItems}
+                                      cartItemsLoaded={cartItemsLoaded}
                                       cleanCart={cleanCart}
                                       incrementQuantity={incrementQuantity}
                                       decrementQuantity={decrementQuantity}
                                       deleteFromCart={deleteFromCart}/>
                         </div>
                         <div className="cart-container">
-                            <BoxList cars={cars} carsLoaded={carsLoaded}
-                                     addToCart={addToCart}/>
+                            {(pathname !== '/cart') ? <BoxList cars={cars}
+                                                               carsLoaded={carsLoaded}
+                                                               addToCart={addToCart}/> : null}
                         </div>
                     </LocalContext.Provider>
                 </div>
@@ -55,4 +60,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default withRouter(App);

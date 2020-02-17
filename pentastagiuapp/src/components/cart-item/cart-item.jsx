@@ -1,46 +1,39 @@
-import React, {Component} from "react";
+import React, {useContext, useEffect} from "react";
 import "./cart-item.css";
 
-import {LocalContext} from "../context/context";
+import {AppContext} from "../context/context";
 
-export default class CartItem extends Component {
-    static contextType = LocalContext;
+const CartItem = (props) => {
+    const {currency} = useContext(AppContext);
 
-    shouldComponentUpdate(nextProps) {
-        return nextProps.id !== this.props.id ||
-            nextProps.row !== this.props.row ||
-            nextProps.name !== this.props.name ||
-            nextProps.engine !== this.props.engine ||
-            nextProps.combustible !== this.props.combustible ||
-            nextProps.color !== this.props.color ||
-            nextProps.price !== this.props.price ||
-            nextProps.quantity !== this.props.quantity
-    }
+    const {id, row, name, engine, combustible, color, price, quantity, decrementQuantity, incrementQuantity, deleteFromCart} = props;
 
-    render() {
-        const {id, row, name, engine, combustible, color, price, quantity, decrementQuantity, incrementQuantity, deleteFromCart} = this.props;
-        return (
-            <tr>
-                <th scope="row">{row}</th>
-                <td>{name}</td>
-                <td>{engine}</td>
-                <td>{combustible}</td>
-                <td>{color}</td>
-                <td>{price} {this.context.currency}</td>
-                <td className="cart-item__action">
-                    <div className="quantity">
-                        <div className="btn btn-danger" onClick={() => decrementQuantity(id)}><i className="fa fa-minus"
-                                                                                                 aria-hidden="true"></i>
-                        </div>
-                        <span className="quantity-number">{quantity}</span>
-                        <div className="btn btn-success" onClick={() => incrementQuantity(id)}><i className="fa fa-plus"
-                                                                                                  aria-hidden="true"></i>
-                        </div>
+    useEffect(()=>{},[id,row,name,engine,combustible,color,price,quantity]);
+
+    return (
+        <tr>
+            <th scope="row">{row}</th>
+            <td>{name}</td>
+            <td>{engine}</td>
+            <td>{combustible}</td>
+            <td>{color}</td>
+            <td>{price} {currency}</td>
+            <td className="cart-item__action">
+                <div className="quantity">
+                    <div className="btn btn-danger" onClick={() => decrementQuantity(id)}>
+                        <i className="fa fa-minus"aria-hidden="true"></i>
                     </div>
-                    <button type="button" className="btn btn-danger" onClick={() => deleteFromCart(id)}><i
-                        className="fa fa-trash-o" aria-hidden="true"></i></button>
-                </td>
-            </tr>
-        );
-    }
-}
+                    <span className="quantity-number">{quantity}</span>
+                    <div className="btn btn-success" onClick={() => incrementQuantity(id)}>
+                        <i className="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <button type="button" className="btn btn-danger" onClick={() => deleteFromCart(id)}>
+                    <i className="fa fa-trash-o" aria-hidden="true"></i></button>
+            </td>
+        </tr>
+    );
+};
+
+export default CartItem;
+

@@ -1,148 +1,127 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import {AppContext} from "../context/context";
 
-export default class AppStore extends Component {
-    constructor() {
-        super();
-        this.state = {
-            cars: [],
-            carsLoaded: false,
-            cartItems: [],
-            cartItemsLoaded: false,
-            currency: '',
-            themeColor: ''
-        };
-    }
+const AppStore = (props) => {
+    const [cars, handleChangeCars] = useState([]);
+    const [carsLoaded, handleChangeCarsLoaded] = useState(false);
+    const [cartItems, handleChangeCartItems] = useState([]);
+    const [cartItemsLoaded, handleChangeCartItemsLoaded] = useState(false);
+    const [currency, handleChangeCurrency] = useState('');
+    const [themeColor, handleChangeThemeColor] = useState('');
 
-    componentDidMount() {
+    useEffect(() => {
         setTimeout(() => {
-            this.setState({
-                cars: [
-                    {
-                        id: 1,
-                        name: "Audi",
-                        engine: "3.0",
-                        combustible: "disel",
-                        color: "black",
-                        price: 30200,
-                        quantity: 1
-                    },
-                    {
-                        id: 2,
-                        name: "Bmw",
-                        engine: "3.0",
-                        combustible: "benzine",
-                        color: "blue",
-                        price: 20300,
-                        quantity: 1
-                    },
-                    {
-                        id: 3,
-                        name: "Mercedes",
-                        engine: "2.2",
-                        combustible: "benzine",
-                        color: "silver",
-                        price: 25650,
-                        quantity: 1
-                    },
-                    {
-                        id: 4,
-                        name: "Opel",
-                        engine: "2",
-                        combustible: "disel",
-                        color: "white",
-                        price: 2000,
-                        quantity: 1
-                    },
-                    {
-                        id: 5,
-                        name: "Porsche",
-                        engine: "3.0",
-                        combustible: "benzine",
-                        color: "red",
-                        price: 10700,
-                        quantity: 1
-                    }
-                ],
-                carsLoaded: true,
-                cartItems: [],
-                cartItemsLoaded: true,
-                currency: 'EURO',
-                themeColor: 'table-dark'
-            });
+            handleChangeCars([
+                {
+                    id: 1,
+                    name: "Audi",
+                    engine: "3.0",
+                    combustible: "disel",
+                    color: "black",
+                    price: 30200,
+                    quantity: 1
+                },
+                {
+                    id: 2,
+                    name: "Bmw",
+                    engine: "3.0",
+                    combustible: "benzine",
+                    color: "blue",
+                    price: 20300,
+                    quantity: 1
+                },
+                {
+                    id: 3,
+                    name: "Mercedes",
+                    engine: "2.2",
+                    combustible: "benzine",
+                    color: "silver",
+                    price: 25650,
+                    quantity: 1
+                },
+                {
+                    id: 4,
+                    name: "Opel",
+                    engine: "2",
+                    combustible: "disel",
+                    color: "white",
+                    price: 2000,
+                    quantity: 1
+                },
+                {
+                    id: 5,
+                    name: "Porsche",
+                    engine: "3.0",
+                    combustible: "benzine",
+                    color: "red",
+                    price: 10700,
+                    quantity: 1
+                }
+            ]);
+            handleChangeCarsLoaded(true);
+            handleChangeCartItemsLoaded(true);
+            handleChangeCurrency('EURO');
+            handleChangeThemeColor('table-dark');
         }, 500);
-    }
+    }, []);
 
-    cleanCart = () => {
-        this.setState({
-            cartItems: []
-        });
+
+    const cleanCart = () => {
+        handleChangeCartItems([]);
     };
 
-    addToCart = (itemId) => {
-        const dublicateId = this.state.cartItems.find(({id}) => id === itemId);
+    const addToCart = (itemId) => {
+        const dublicateId = cartItems.find(({id}) => id === itemId);
 
         if (dublicateId !== undefined) {
-            const cartItems = [...this.state.cartItems];
-            const index = cartItems.findIndex(item => itemId === item.id);
-            cartItems[index].quantity++;
+            const newArray = [...cartItems];
+            const index = newArray.findIndex(item => itemId === item.id);
+            newArray[index].quantity++;
 
-            this.setState({
-                cartItems: cartItems
-            })
-
+            handleChangeCartItems(newArray);
         } else {
-            const itemToAdd = Object.assign({}, this.state.cars.find(({id}) => id === itemId));
+            const itemToAdd = Object.assign({}, cars.find(({id}) => id === itemId));
 
-            this.setState({
-                cartItems: [...this.state.cartItems, itemToAdd]
-            })
+            handleChangeCartItems([...cartItems, itemToAdd])
         }
     };
 
-    deleteFromCart = (itemId) => {
-        const cartItems = this.state.cartItems.filter(({id}) => id !== itemId);
-
-        this.setState({
-            cartItems: cartItems
-        });
-
+    const deleteFromCart = (itemId) => {
+        const newArray = cartItems.filter(({id}) => id !== itemId);
+        handleChangeCartItems(newArray);
     };
 
-    incrementQuantity = (itemId) => {
-        const cartItems = [...this.state.cartItems];
-        const index = cartItems.findIndex(item => itemId === item.id);
-        cartItems[index].quantity++;
+    const incrementQuantity = (itemId) => {
+        const newArray = [...cartItems];
+        const index = newArray.findIndex(item => itemId === item.id);
+        newArray[index].quantity++;
 
-        this.setState({cartItems: cartItems});
+        handleChangeCartItems(newArray);
     };
 
-    decrementQuantity = (itemId) => {
-        const cartItems = [...this.state.cartItems];
-        const index = cartItems.findIndex(item => itemId === item.id);
+    const decrementQuantity = (itemId) => {
+        const newArray = [...cartItems];
+        const index = newArray.findIndex(item => itemId === item.id);
 
-        if (cartItems[index].quantity > 1) {
-            cartItems[index].quantity--;
+        if (newArray[index].quantity > 1) {
+            newArray[index].quantity--;
         }
 
-        this.setState({cartItems: cartItems});
+        handleChangeCartItems(newArray);
     };
 
-    changeThemeColor = (color) => {
-        this.setState({
-            themeColor: color
-        })
+    const changeThemeColor = (color) => {
+        handleChangeThemeColor(color);
     };
 
-    changeCurrency = (value) => {
-        const {currency: previousCurrency } = this.state;
-        const {cars, cartItems} = this.state;
+    const changeCurrency = (value) => {
+        const previousCurrency = currency;
         let newValueCars = [...cars];
         let newValueCart = [...cartItems];
         let newCarsArray = [];
         let newCartArray = [];
 
-        if (value!==previousCurrency) {
+        if (value !== previousCurrency) {
             switch (value) {
                 case 'RON':
                     newValueCars.map(car => {
@@ -169,30 +148,34 @@ export default class AppStore extends Component {
         newCarsArray = [...newValueCars];
         newCartArray = [...newValueCart];
 
+        handleChangeCars(newCarsArray);
 
-        this.setState({
-            cars: newCarsArray,
-            cartItems: newCartArray,
-            currency: value
-        })
+        handleChangeCartItems(newCartArray);
+
+        handleChangeCurrency(value);
     };
 
-    render() {
-        return (
-            <AppContext.Provider
-                value={{
-                    ...this.state,
-                    cleanCart: this.cleanCart,
-                    addToCart: this.addToCart,
-                    deleteFromCart: this.deleteFromCart,
-                    incrementQuantity: this.incrementQuantity,
-                    decrementQuantity: this.decrementQuantity,
-                    changeThemeColor: this.changeThemeColor,
-                    changeCurrency: this.changeCurrency
-                }}
-            >
-                {this.props.children}
-            </AppContext.Provider>
-        );
-    }
-}
+    return (
+        <AppContext.Provider
+            value={{
+                cars,
+                carsLoaded,
+                cartItems,
+                cartItemsLoaded,
+                currency,
+                themeColor,
+                cleanCart,
+                addToCart,
+                deleteFromCart,
+                incrementQuantity,
+                decrementQuantity,
+                changeThemeColor,
+                changeCurrency
+            }}
+        >
+            {props.children}
+        </AppContext.Provider>
+    );
+};
+
+export default AppStore;
