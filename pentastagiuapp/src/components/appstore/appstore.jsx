@@ -124,18 +124,18 @@ const AppStore = (props) => {
         if (value !== previousCurrency) {
             switch (value) {
                 case 'RON':
-                    newValueCars.map(car => {
+                    newValueCars.forEach(car => {
                         car.price = car.price * 4.7;
                     });
-                    newValueCart.map(car => {
+                    newValueCart.forEach(car => {
                         car.price = car.price * 4.7;
                     });
                     break;
                 case 'EURO':
-                    newValueCars.map(car => {
+                    newValueCars.forEach(car => {
                         car.price = car.price / 4.7;
                     });
-                    newValueCart.map(car => {
+                    newValueCart.forEach(car => {
                         car.price = car.price / 4.7;
                     });
                     break;

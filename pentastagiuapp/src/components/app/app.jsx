@@ -41,12 +41,12 @@ const App = ({location}) => {
                     </div>
                     <LocalContext.Provider value={{currency}}>
                         <div className="box-container">
-                            <CartList cartItems={cartItems}
+                            {(pathname === '/cart') ? <CartList cartItems={cartItems}
                                       cartItemsLoaded={cartItemsLoaded}
                                       cleanCart={cleanCart}
                                       incrementQuantity={incrementQuantity}
                                       decrementQuantity={decrementQuantity}
-                                      deleteFromCart={deleteFromCart}/>
+                                      deleteFromCart={deleteFromCart}/> : null}
                         </div>
                         <div className="cart-container">
                             {(pathname !== '/cart') ? <BoxList cars={cars}
