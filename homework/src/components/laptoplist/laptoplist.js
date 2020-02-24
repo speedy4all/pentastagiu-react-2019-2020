@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Laptop from "../laptop/laptop";
+import { AppContext } from "../../context";
 
 class LaptopList extends Component {
+  static contextType = AppContext;
   render() {
-    const { items, addToCart } = this.props;
-    return items.map(item => (
+    const { addToCart } = this.context;
+    return this.context.laptops.map(item => (
       <Laptop
         className="col-sm-6"
         addToCart={addToCart}

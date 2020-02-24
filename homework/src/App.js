@@ -3,141 +3,45 @@ import "./App.css";
 
 import Header from "./components/header/header";
 //import Laptop from "./components/laptop/laptop";
-import CartItem from "./components/cartItem/cartitem";
+import CartItemList from "./components/cartItemList/cartItemList";
 import LaptopList from "./components/laptoplist/laptoplist";
-import { LocalContext } from "./context";
-import { ThemeContext } from "./context";
+import { LocalContext, ThemeContext, AppContext } from "./context";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import About from "./components/about/about";
+import Refurbished from "./components/refurbished/refurbished";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      laptops: [],
-      laptopsCart: [],
-      showInfo: false,
-      type: "new",
-      theme: ""
-    };
+  static contextType = AppContext;
+
+  componentDidUpdate() {
+    console.log(this.context);
   }
 
-  componentDidMount() {
-    this.setState({
-      laptops: [
-        {
-          id: 1,
-          name: "Acer",
-          description: "school laptop",
-          color: "red",
-          price: "300 Euro"
-        },
-        {
-          id: 2,
-          name: "Hp",
-          description: "office laptop",
-          color: "blue",
-          price: "400 Euro"
-        },
-        {
-          id: 3,
-          name: "Apple",
-          description: "business laptop",
-          color: "silver",
-          price: "1000 Euro"
-        },
-        {
-          id: 4,
-          name: "Trackstor",
-          description: "gaming laptop",
-          color: "Black",
-          price: "900 Euro"
-        },
-        {
-          id: 5,
-          name: "Dell",
-          description: "business laptop",
-          color: "yellow",
-          price: "985 Euro"
-        }
-      ]
-    });
-  }
-  onShowClick = e => {
-    this.setState({ showInfo: !this.state.showInfo });
-  };
+  /*renderList = () => (
+    <LaptopList
+      items={this.context.laptops}
+      addToCart={this.context.addToCart}
+    />
+  );*/
 
-  changeType = () => {
-    this.setState({ type: "refurbished" });
-  };
-
-  changeTheme = () => {
-    this.setState({ theme: "bg-info" });
-  };
-  renderList = () => (
-    <LaptopList items={this.state.laptops} addToCart={this.addToCart} />
-  );
-
-  renderCart = () =>
-    this.state.laptopsCart.map((item, index) => (
+  /* renderCart = () =>
+    this.context.laptopsCart.map((item, index) => (
       <CartItem
         className="col-sm-6"
         key={`${item.id}-${index}`}
-        removeFromCart={this.removeFromCart}
-        add={this.addToCart}
+        removeFromCart={this.context.removeFromCart}
+        add={this.context.addToCart}
         itemId={item.id}
         name={item.name}
         description={item.description}
         color={item.color}
         price={item.price}
         count={item.count}
-        decreaseCount={this.removeOneFromCart}
-        type={this.state.type}
+        decreaseCount={this.context.removeOneFromCart}
+        type={this.context.type}
       />
-    ));
-  cleanCart = () => {
-    //clear cartList
-    this.setState({ laptopsCart: [] });
-  };
+    ));*/
 
-  addToCart = itemId => {
-    const itemToAdd = this.state.laptops.find(x => x.id === itemId);
-
-    if (!itemToAdd) {
-      return undefined;
-    }
-
-    const cartListUpdated = this.state.laptopsCart.slice();
-    const itemAlreadyAdded = cartListUpdated.find(x => x.id === itemId);
-    //console.log(cartListUpdated, itemAlreadyAdded);
-    if (itemAlreadyAdded) {
-      itemAlreadyAdded.count++;
-    } else {
-      const newItem = Object.assign({}, itemToAdd);
-      newItem.count = 1;
-      cartListUpdated.push(newItem);
-      //console.log(cartListUpdated);
-    }
-
-    this.setState({ laptopsCart: cartListUpdated });
-    console.log(this.state.laptopsCart);
-  };
-  removeFromCart = itemId => {
-    const cartUpdated = this.state.laptopsCart.filter(
-      index => index.id !== itemId
-    );
-    //console.log(cartUpdated);
-    this.setState({ laptopsCart: cartUpdated });
-  };
-
-  removeOneFromCart = itemId => {
-    let cartListUpdated = this.state.laptopsCart.slice();
-    const itemToRemove = cartListUpdated.find(x => x.id === itemId);
-    if (itemToRemove && itemToRemove.count === 1) {
-      cartListUpdated = cartListUpdated.filter(x => x.id !== itemId);
-    } else {
-      itemToRemove.count = itemToRemove.count - 1;
-    }
-    this.setState({ cart: cartListUpdated });
-  };
   /*if (itemToRemove) {
       //const index = this.state.laptopsCart.indexOf(itemToRemove);
       const cartUpdated = this.state.laptopsCart.splice(0, 1);
@@ -145,49 +49,55 @@ class App extends Component {
     }*/
 
   render() {
-    const { showInfo } = this.state;
+    const { showInfo } = this.context;
 
     return (
-      <ThemeContext.Provider value={{ theme: this.state.theme }}>
-        <LocalContext.Provider value={{ type: this.state.type }}>
-          <div className="container">
-            <Header branding="Laptop Store" headline="Super Price" />
-            <div className="text-center my-3">
+      <ThemeContext.Provider value={{ theme: this.context.theme }}>
+        <LocalContext.Provider value={{ type: this.context.type }}>
+          <BrowserRouter>
+            <div className="container">
+              <Header branding="About" headline="Refurbished" />
+              <Switch>
+                <Route exact path="/About" component={About} />
+                <Route exact path="/Refurbished" component={Refurbished} />
+              </Switch>
+              <div className="text-center my-3">
+                <button
+                  type="button"
+                  className="btn btn-outline-info btn-sm "
+                  onClick={this.context.onShowClick}
+                >
+                  Show Products
+                </button>
+              </div>
               <button
                 type="button"
-                className="btn btn-outline-info btn-sm "
-                onClick={this.onShowClick}
+                className="btn btn-outline-info btn-sm mr-2"
+                onClick={this.context.cleanCart}
               >
-                Show Products
+                Clear Cart
               </button>
+              <span className="badge badge-pill badge-warning">
+                {this.context.type}
+              </span>
+              <button
+                className="btn btn-outline-info btn-sm ml-2"
+                onClick={this.context.changeType}
+              >
+                Change Type
+              </button>
+              <button
+                className="btn btn-outline-info btn-sm float-right"
+                onClick={this.context.changeTheme}
+              >
+                Change Theme
+              </button>
+              <div className="row bg-light">
+                {showInfo ? <CartItemList /> : null}
+              </div>
+              <div className="row">{showInfo ? <LaptopList /> : null}</div>
             </div>
-            <button
-              type="button"
-              className="btn btn-outline-info btn-sm mr-2"
-              onClick={this.cleanCart}
-            >
-              Clear Cart
-            </button>
-            <span className="badge badge-pill badge-warning">
-              {this.state.type}
-            </span>
-            <button
-              className="btn btn-outline-info btn-sm ml-2"
-              onClick={this.changeType}
-            >
-              Change Type
-            </button>
-            <button
-              className="btn btn-outline-info btn-sm float-right"
-              onClick={this.changeTheme}
-            >
-              Change Theme
-            </button>
-            <div className="row bg-light">
-              {showInfo ? this.renderCart() : null}
-            </div>
-            <div className="row">{showInfo ? this.renderList() : null}</div>
-          </div>
+          </BrowserRouter>
         </LocalContext.Provider>
       </ThemeContext.Provider>
     );
