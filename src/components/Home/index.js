@@ -11,7 +11,7 @@ const RouteId = (props) => (
 );
 
 const Home = (props) => {
-  console.log(props.match);
+  console.log("Home", props);
   return (
   <div>
     <h2>Home</h2>
