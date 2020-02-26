@@ -1,0 +1,70 @@
+
+.list-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.App{
+  margin: 10px auto;
+  width:800px;
+}
+
+.list-item{
+  background-color:#ffffff;
+  width:220px;
+  padding: 10px;
+  border: 1px solid #ff971d;
+  margin: 1px auto;
+}
+
+.photo{
+  margin: auto;
+  background-color: #ffe8d6;
+  width:100%;
+  height:230px;
+}
+
+.description{
+  font-size: 14px;
+  height: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin:10px;
+  font-family: "Open-Sans", Arial, Helvetica, sans-serif;
+  overflow:hidden;
+}
+.price{
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  color: #ff971d;
+  font-size:18px;
+  font-weight:600;
+  text-align:center;
+}
+
+.old-price{
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  font-size:13px;
+  font-weight:400;
+  text-align:center;
+  padding-top:5px;
+  padding-bottom:4px;
+}
+
+.old-price span{
+  margin-left:10px;
+  text-decoration: none;
+  color:grey;
+}
+
+.submit-button{
+  margin:5px 40px;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  padding: 8px;
+  width:140px;
+  color:white;
+  background-color:brown;
+  border: 0px;
+  border-radius: 4px;
+}
