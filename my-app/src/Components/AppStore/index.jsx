@@ -16,7 +16,7 @@ export default class AppStore extends Component {
     };
   }
   changeLanguage = () => {
-    this.setState({ language: "En" });
+    this.setState({ language: "En"  });
   };
   cleanCart = () => {
     this.setState({ cartList: [] });

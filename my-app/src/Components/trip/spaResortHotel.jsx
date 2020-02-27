@@ -13,11 +13,11 @@ const SpaHotel = ({ match }) => {
   console.log(match);
   return (
     <div>
-      <h1>Spa Resorts Hotel</h1> 
+      <h1>{match.params.id}</h1> 
       <div>
         {hotel.map(hotelItem => (
-          <h2 key={hotelItem.id}>
-            <Link to={`${match.url}/${hotelItem.id}`}>
+          <h2 key={hotelItem.name}>
+            <Link to={`${match.url}/${hotelItem.name}`}>
               <span> Name: {hotelItem.name} </span>
               <span> Stars: {hotelItem.stars} </span>
               <span> Price: {hotelItem.stars} lei </span>

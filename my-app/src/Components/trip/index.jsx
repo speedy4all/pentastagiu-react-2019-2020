@@ -9,11 +9,11 @@ import SeaTrip from './seaTrip';
 const Trip = ({match}) => {
     return(
     <div>
-        <h2>Trips</h2> 
+        <h2>Vacante</h2> 
         <ul className="navbar-trip-links">
-            <li><Link to={`${match.url}/mountain`}>Mountains</Link></li>
-            <li><Link to={`${match.url}/spa`}>SPA Resorts</Link></li>
-            <li><Link to={`${match.url}/seaTrip`}>Sea Trips</Link></li>
+            <li><Link to={`${match.url}/mountain`}>Vacante la munte</Link></li>
+            <li><Link to={`${match.url}/spa`}>Statiuni balneo</Link></li>
+            <li><Link to={`${match.url}/seaTrip`}>Vacante litoral</Link></li>
         </ul>
         {/* <switch>
         <Route exact path={`${match.path}/spa`} component={SpaResort}/>

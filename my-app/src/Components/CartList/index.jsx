@@ -6,6 +6,7 @@ export default function CartList() {
     const appContext = useContext(AppContext)
     return (
       <div>
+        <h1>Cos cumparaturi</h1>
         {appContext.cartList.map((cartItem, index) => (
           <CartItem
             remove={appContext.removeFromCart}

@@ -6,7 +6,6 @@ import * as serviceWorker from "./serviceWorker";
 import AppStore from "./Components/AppStore";
 import { Theme } from "./Components/Theme";
 import { BrowserRouter, Route } from "react-router-dom";
-
 import MountainList from "./Components/mountainsList";
 
 ReactDOM.render(

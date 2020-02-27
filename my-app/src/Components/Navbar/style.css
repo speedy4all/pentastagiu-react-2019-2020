@@ -1,20 +1,16 @@
 .navbar {
-  /* display: block; */
-  justify-content: space-around;
-  align-items: left;
-  min-height: 10vh;
-  padding: 0 10px;
-  background: rgb(58, 58, 63);
+  width: 75%;
+  min-height: 5vh;
 }
 .navbar-links {
-  width: 50%;
+  width: 30%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
 }
 .navbar-link {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 

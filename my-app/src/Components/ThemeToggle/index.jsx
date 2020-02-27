@@ -5,6 +5,6 @@ export class ThemeToggle extends PureComponent {
   static contextType = ThemeContext;
   render() {
     const { toggleTheme } = this.context;
-    return <button onClick={toggleTheme}>Toggle the theme</button>;
+    return <button className="button theme-btn" onClick={toggleTheme}>Toggle Theme</button>;
   }
 }

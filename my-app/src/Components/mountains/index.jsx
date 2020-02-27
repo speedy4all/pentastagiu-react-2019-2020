@@ -12,14 +12,14 @@ export function Mountain(props) {
       render={isHover => (
         <div className={`mountain-item ${isHover ? "hover" : ""}`} style={{background: theme.ui, color: theme.syntax}}>
           <span>Peak: {props.peak}</span>
-          <span>Mountains: {props.mountain}</span>
+          {/* <span>Mountains: {props.mountain}</span> */}
           <span>County: {props.county}</span>
-          <span>Height: {props.height}m</span>
-          <span>Language: {language}</span>
-          <span>
+          {/* <span>Height: {props.height}m</span>
+          <span>Language: {language}</span> */}
+          {/* <span>
             Cottage:
             {props.cottage ? props.cottage : "There is no cottage!"}
-          </span>
+          </span> */}
           <button onClick={() => addToCart(props.itemId)}>Get the trip</button>
         </div>
       )}

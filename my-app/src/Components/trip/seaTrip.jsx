@@ -2,7 +2,7 @@ import React from 'react';
 
 const SeaTrip = () => (
     <div>
-        Sea Trips
+        Vacanțe Litoral
     </div>
 );
 
