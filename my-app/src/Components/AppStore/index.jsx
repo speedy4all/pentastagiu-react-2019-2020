@@ -16,7 +16,7 @@ export default class AppStore extends Component {
     };
   }
   changeLanguage = () => {
-    this.setState({ language: "En" });
+    this.setState({ language: "En"  });
   };
   cleanCart = () => {
     this.setState({ cartList: [] });
@@ -27,7 +27,6 @@ export default class AppStore extends Component {
   };
 
   decrease = itemId => {
-    // debugger;
     let cartUpdated = this.state.cartList.slice();
     let cartItem = cartUpdated.find(item => item.id === itemId);
 
@@ -44,19 +43,19 @@ export default class AppStore extends Component {
   addToCart = itemId => {
     const itemToAdd = this.state.mountains.find(item => item.id === itemId);
     if (!itemToAdd) {
-      return undefined;
+      return;
     }
 
     const cartUpdated = this.state.cartList.slice();
     const cartItem = cartUpdated.find(item => item.id === itemId);
-    if (!cartItem) {
+    if (cartItem) {
+      // increse the trips
+      cartItem.countItem++;
+    } else {
       // create a new trip
       const newItem = Object.assign({}, itemToAdd);
       newItem.countItem = 1;
       cartUpdated.push(newItem);
-    } else {
-      // increse the trips
-      cartItem.countItem++;
     }
     this.setState({ cartList: cartUpdated });
   };
@@ -71,7 +70,6 @@ export default class AppStore extends Component {
     fetchMountainList().then(data =>
       this.setState({ mountains: data, mountainsLoaded: true })
     );
-    // .catch(err => console.log(err));
   }
 
   render() {

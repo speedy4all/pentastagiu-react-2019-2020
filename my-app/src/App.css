@@ -2,10 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -23,37 +20,46 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+header {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+main{
+  display: flex;
+}
 
 .App-link {
   color: #61dafb;
 }
-header {
-  width: 1000px;
-  height: 300px;
-  background-image: url("./cruce-caraiman.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-.cart-container {
-  margin: 5px;
-  padding: 10px;
-}
-.cart-container button {
-  margin: 0 5px;
-}
-.cart-container span {
-  margin: 5px;
-}
+.cart-container,
 .mountains-container {
   margin: 5px;
   padding: 10px;
 }
-.mountains-container button {
+.cart-container button,
+.mountains-container button,
+.mountains-container span,
+.cart-container span {
   margin: 0 5px;
 }
-.mountains-container span {
-  margin: 0 5px;
+
+.button {
+  border-radius: 5%;
+  border: 1px solid burlywood;
+  margin: auto 10px;
+  padding: 5px 10px;
+  display: block;
 }
+/* .language-btn {
+  
+}
+.theme-btn {
+} */
+ 
+ 
 .hover {
   background-color: cadetblue;
 }

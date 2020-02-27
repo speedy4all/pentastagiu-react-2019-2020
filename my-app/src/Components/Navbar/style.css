@@ -1,0 +1,16 @@
+.navbar {
+  width: 75%;
+  min-height: 5vh;
+}
+.navbar-links {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+.navbar-link {
+  color: black;
+  text-decoration: none;
+}
+
