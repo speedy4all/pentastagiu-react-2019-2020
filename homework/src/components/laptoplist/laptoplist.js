@@ -8,7 +8,6 @@ class LaptopList extends Component {
     const { addToCart } = this.context;
     return this.context.laptops.map(item => (
       <Laptop
-        className="col-sm-6"
         addToCart={addToCart}
         key={item.id}
         itemId={item.id}

@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 import { ThemeContext } from "../../context";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Badge from "@material-ui/core/Badge";
+import Chip from "@material-ui/core/Chip";
 
 class CartItem extends Component {
   shouldComponentUpdate(nextProps) {
@@ -16,49 +24,62 @@ class CartItem extends Component {
   render() {
     //console.log(this.props);
     const { name, description, color, price, itemId, count, type } = this.props;
+
     return (
       <ThemeContext.Consumer>
         {themeValue => (
-          <div
-            className={`card mx-2 my-2 ${themeValue.theme}`}
-            style={{ width: "18vw" }}
+          <Card
+            style={{
+              margin: 10,
+              maxWidth: 200
+            }}
           >
-            <div className="card-header d-flex flex-row text-warning justify-content-between font-weight-bold">
-              {name}
-              <div className="p-0 mx-0">
-                <button
-                  onClick={() => this.props.removeFromCart(itemId)}
-                  className="btn btn-danger btn-sm"
-                >
-                  x
-                </button>
-              </div>
-            </div>
+            <CardActionArea>
+              <Chip
+                size="small"
+                label="X"
+                color="secondary"
+                onClick={() => this.props.removeFromCart(itemId)}
+              ></Chip>
 
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item font-italic">{description}</li>
-              <li className="list-group-item">{color}</li>
-              <li className="list-group-item">{price}</li>
-              <li className="list-group-item">{type}</li>
-            </ul>
-            <div className="d-flex flex-row justify-content-center">
-              <button
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {name}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {description}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {color}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {price}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {type}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button
+                size="small"
+                color="primary"
+                variant="outlined"
                 onClick={() => this.props.add(itemId)}
-                className="btn btn-danger btn-sm"
               >
                 +
-              </button>
-              <span className="badge badge-pill badge-warning mx-2 my-2">
-                {count}
-              </span>
-              <button
+              </Button>
+              <Badge badgeContent={count} color="secondary"></Badge>
+              <Button
+                size="small"
+                color="primary"
+                variant="outlined"
                 onClick={() => this.props.decreaseCount(itemId)}
-                className="btn btn-danger btn-sm"
               >
                 -
-              </button>
-            </div>
-          </div>
+              </Button>
+            </CardActions>
+          </Card>
         )}
       </ThemeContext.Consumer>
     );

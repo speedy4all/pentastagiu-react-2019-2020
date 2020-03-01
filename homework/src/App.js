@@ -9,6 +9,13 @@ import { LocalContext, ThemeContext, AppContext } from "./context";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import About from "./components/about/about";
 import Refurbished from "./components/refurbished/refurbished";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+import ChangeHistoryIcon from "@material-ui/icons/ChangeHistory";
+import Icon from "@material-ui/core/Icon";
+import SaveIcon from "@material-ui/icons/Save";
+import Chip from "@material-ui/core/Chip";
 
 class App extends Component {
   static contextType = AppContext;
@@ -55,48 +62,72 @@ class App extends Component {
       <ThemeContext.Provider value={{ theme: this.context.theme }}>
         <LocalContext.Provider value={{ type: this.context.type }}>
           <BrowserRouter>
-            <div className="container">
-              <Header branding="About" headline="Refurbished" />
+            <Header branding="About" headline="Refurbished" />
+            <Grid container>
               <Switch>
                 <Route exact path="/About" component={About} />
                 <Route exact path="/Refurbished" component={Refurbished} />
               </Switch>
-              <div className="text-center my-3">
-                <button
-                  type="button"
-                  className="btn btn-outline-info btn-sm "
+              <Grid
+                item
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  style={{ margin: 10 }}
+                  startIcon={<Icon>send</Icon>}
                   onClick={this.context.onShowClick}
                 >
                   Show Products
-                </button>
-              </div>
-              <button
-                type="button"
-                className="btn btn-outline-info btn-sm mr-2"
-                onClick={this.context.cleanCart}
-              >
-                Clear Cart
-              </button>
-              <span className="badge badge-pill badge-warning">
-                {this.context.type}
-              </span>
-              <button
-                className="btn btn-outline-info btn-sm ml-2"
-                onClick={this.context.changeType}
-              >
-                Change Type
-              </button>
-              <button
-                className="btn btn-outline-info btn-sm float-right"
-                onClick={this.context.changeTheme}
-              >
-                Change Theme
-              </button>
-              <div className="row bg-light">
+                </Button>
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="secondary"
+                  style={{ margin: 10 }}
+                  startIcon={<DeleteIcon />}
+                  onClick={this.context.cleanCart}
+                >
+                  Clear Cart
+                </Button>
+
+                <Chip label={this.context.type} color="secondary" />
+
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  style={{ margin: 10 }}
+                  startIcon={<ChangeHistoryIcon />}
+                  onClick={this.context.changeType}
+                >
+                  Change Type
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="secondary"
+                  style={{ margin: 10 }}
+                  startIcon={<SaveIcon />}
+                  onClick={this.context.changeTheme}
+                >
+                  Change Theme
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
                 {showInfo ? <CartItemList /> : null}
-              </div>
-              <div className="row">{showInfo ? <LaptopList /> : null}</div>
-            </div>
+              </Grid>
+              <Grid item xs={6}>
+                {showInfo ? <LaptopList /> : null}
+              </Grid>
+            </Grid>
           </BrowserRouter>
         </LocalContext.Provider>
       </ThemeContext.Provider>
