@@ -1,0 +1,12 @@
+.App {
+  min-height: 100vh;
+  background-color: rgb(141, 141, 219);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span {
+  margin: 5px;
+}
+
