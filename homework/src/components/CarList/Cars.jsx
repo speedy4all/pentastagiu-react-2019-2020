@@ -2,7 +2,7 @@ import React from 'react';
 import { Car } from './Car';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import CartItem from '../Cart/CartItem';
+import CartItem from '../Cart/cartItem';
 
 
 export default class Cars extends React.Component {
