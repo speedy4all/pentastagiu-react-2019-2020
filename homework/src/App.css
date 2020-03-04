@@ -5,7 +5,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 17vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,8 +13,20 @@
   font-size: calc(10px + 2vmin);
   color: #fff;
 }
+.lang-item-left {
+  position: absolute;
+  top: 5px;
+  right: 2.5vw;
+  font-size: small;
+}
+.theme-item-left {
+  position: absolute;
+  right: 2.8vw;
+  top: 50px;
+  font-size: small;
+}
 .App-main-paige {
-  min-height: 90vh;
+  min-height: 83vh;
   padding-top: 30px;
   padding-bottom: 30px;
   
@@ -32,13 +44,21 @@
 
 .car-container, .cart {
   margin-top: 20px;
-  background-color: #B7C3BA;
   padding: 20px;
   border-radius: 8px;
 }
 
+.light {
+  background-color: #B7C3BA;
+}
+
+.dark {
+  background-color: #90a294;
+}
+
 .cart {
   padding: 5px 10px;
+  background-color: #B7C3BA;
 }
 
 .hidden {
@@ -54,6 +74,10 @@
   padding: 15px;
   border-radius: 8px;
   margin: 5px;
+}
+.hover {
+  background-color: #acb9af;
+  border-radius: 8px 28px 8px 28px;
 }
 
 .brand-model {
