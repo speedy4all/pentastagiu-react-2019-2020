@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Hover from '../Hover';
+import { Button } from '@material-ui/core';
 
 export class CartItem extends React.PureComponent {
 
@@ -14,9 +15,9 @@ export class CartItem extends React.PureComponent {
                             <span>{this.props.name} | {this.props.age} ani</span>
                             <span>{this.props.price} Lei </span>
                             <span>Language: {this.props.language}</span>
-                            <button onClick={() => this.props.add(this.props.itemId)}>+</button>
-                            <button onClick={() => this.props.decreaseCount(this.props.itemId)}>-</button>
-                            <button onClick={() => this.props.remove(this.props.itemId)}>X</button>
+                            <Button color='default' variant="contained" onClick={() => this.props.add(this.props.itemId)}>+</Button>
+                            <Button color='secondary' variant="contained" onClick={() => this.props.decreaseCount(this.props.itemId)}>-</Button>
+                            <Button color='secondary' variant="contained" onClick={() => this.props.remove(this.props.itemId)}>X</Button>
                         </div>
                     );
                 }}
