@@ -8,6 +8,7 @@ import {
     TableRow, 
     Paper 
 } from '@material-ui/core';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Car from './Car/Car.jsx';
 import Spinner from '../Spinner/Spinner.jsx';
@@ -50,7 +51,13 @@ class Cars extends Component {
             html = <Spinner />;
         }
 
-        return html;
+        return (
+            <div className="row">
+                <div className="col-md-12">
+                    { html }
+                </div>
+            </div>
+        );
     }
 }
 

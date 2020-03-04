@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import CartItem from './CartItem/CartItem.jsx';
 import Spinner from '../Spinner/Spinner.jsx';
 import LocalContext from '../../context';
+import './Cart.css';
 
 
 class Cart extends Component {
@@ -11,11 +12,12 @@ class Cart extends Component {
 
     showCartItems = () => {
         return this.context.cartItems.map(item => <CartItem 
-                key={ item.id } 
+                key={ item.id }
                 { ...item } 
                 increaseCartItemProduct={this.context.increaseCartItemProduct}
                 decreaseCartItemProduct={this.context.decreaseCartItemProduct}
-            />);
+            />
+        );
     }
 
     render(){
@@ -27,8 +29,12 @@ class Cart extends Component {
         if(this.context.loadingCartItems){
             html = <Spinner />
         }
-
-        return html;
+        
+        return (
+            <div className="CartItemContainer">
+                { html }
+            </div>
+        );
     }
 }
 

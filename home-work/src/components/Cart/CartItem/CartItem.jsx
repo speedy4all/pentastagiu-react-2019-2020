@@ -10,14 +10,15 @@ const cartItem = props => {
     const localContext = useContext(LocalContext);
 
     const style = {
-        display: 'block',
         padding: '10px',
-        margin: '5px 10px',
+        margin: '5px 10px 10px',
+        minWidth: '300px',
+        maxWidth: '350px',
         border: '1px solid ' + props.color
     };
 
     return (
-        <span style={ style }>
+        <div style={ style }>
             <span>Produs: { props.product }</span>
             <br />
             <span>Pret: { `${props.price} ${localContext.currency}` }</span>
@@ -54,7 +55,7 @@ const cartItem = props => {
                     </Button>
                 </div>
             </div>
-        </span>
+        </div>
     );
 }
 
