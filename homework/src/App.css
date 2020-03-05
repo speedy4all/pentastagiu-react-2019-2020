@@ -8,22 +8,21 @@
   min-height: 17vh;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  padding-left: 20%;
   font-size: calc(10px + 2vmin);
   color: #fff;
 }
-.lang-item-left {
-  position: absolute;
-  top: 5px;
-  right: 2.5vw;
-  font-size: small;
+
+.title-header {
+  text-align: left;
+  flex-shrink: 1.5;
 }
-.theme-item-left {
-  position: absolute;
-  right: 2.8vw;
-  top: 50px;
+
+.lang-item-left {
   font-size: small;
+  flex-shrink: 1.5;
 }
 .App-main-paige {
   min-height: 83vh;
@@ -85,12 +84,17 @@
   font-weight: bold;
 }
 
-.title-header {
-  padding-left: 10%;
+.position-relative {
+  position: relative;
 }
-
 .delete-button {
   color: #e60000;
+  position: absolute;
+  top: 3px;
+  right: 10px;
+}
+.row-width {
+  width:100%
 }
 
 .delete-button:hover {

@@ -10,7 +10,8 @@ export default class Header extends Component {
                     <h2> {this.props.title} </h2>
                     <div> {this.props.subtitle} </div>
                 </span>
-                <span className="lang-item-left">
+                <div className="lang-item-left">
+                <span>
                     Language: {this.props.language}
                     <form>
                         <select onChange={this.props.changeLanguage.bind(this)}>
@@ -19,7 +20,7 @@ export default class Header extends Component {
                         </select>
                     </form>
                 </span>
-                <span className="theme-item-left">
+                <span>
                     Theme: {this.props.theme}
                     <form>
                             <select onChange={this.props.changeTheme.bind(this)}>
@@ -28,6 +29,7 @@ export default class Header extends Component {
                             </select>
                     </form>
                 </span>
+                </div>
             </div>
         );
     }

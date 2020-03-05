@@ -1,5 +1,6 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { LocaleContext } from '../../context';
 import Hover from '../Hover';
 
@@ -24,27 +25,29 @@ export default class CartItem extends React.PureComponent {
             <LocaleContext.Consumer>
             {contextValue => (
                 <Hover render={ isHover => (
-                    <div className={`cart-item ${isHover ? "hover" : ""}`}>
-                    <Col lg={2}>
+                    <div className={`cart-item ${isHover ? "hover" : ""} position-relative`}>
+                    <Row className="row-width">
+                    <Col xs={4} md={2} >
                         <span>Brand: {brand} </span>
                     </Col>
-                    <Col lg={2}>
+                    <Col xs={4} md={2}>
                         <span>Model: {model} </span>
                     </Col>
-                    <Col lg={3}>
+                    <Col xs={3} md={3}>
                         <span>Color: {color} </span>
                     </Col>
-                    <Col lg={2}>
+                    <Col xs={4} md={2}>
                         <span>Language: {contextValue.language} </span>
                     </Col>
-                    <Col lg={2}>
+                    <Col xs={4} md={2}>
                         <span>Price: {price} Euro</span>
                     </Col>
-                    <Col lg={1}>
+                    <Col xs={1} md={1}>
                         <span className="badge badge-primary counter"> {counter} </span>
                     </Col>
                     <span className="delete-button" onClick={removeFromCart.bind(this, cartId)} >&times;</span>
-                </div>
+                    </Row>
+                    </div>
                 )} 
                 />
             )}
