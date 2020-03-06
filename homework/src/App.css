@@ -5,16 +5,27 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 17vh;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  padding-left: 20%;
   font-size: calc(10px + 2vmin);
   color: #fff;
 }
+
+.title-header {
+  text-align: left;
+  flex-shrink: 1.5;
+}
+
+.lang-item-left {
+  font-size: small;
+  flex-shrink: 1.5;
+}
 .App-main-paige {
-  min-height: 90vh;
+  min-height: 83vh;
   padding-top: 30px;
   padding-bottom: 30px;
   
@@ -32,13 +43,25 @@
 
 .car-container, .cart {
   margin-top: 20px;
-  background-color: #B7C3BA;
   padding: 20px;
   border-radius: 8px;
 }
 
+.light {
+  background-color: #B7C3BA;
+}
+
+.dark {
+  background-color: #90a294;
+}
+
 .cart {
   padding: 5px 10px;
+  background-color: #B7C3BA;
+}
+
+.hidden {
+  display: none;
 }
 
 .cart-item {
@@ -51,13 +74,37 @@
   border-radius: 8px;
   margin: 5px;
 }
+.hover {
+  background-color: #acb9af;
+  border-radius: 8px 28px 8px 28px;
+}
 
 .brand-model {
   padding: 0 5px 20px;
   font-weight: bold;
 }
 
-.title-header {
-  padding-left: 10%;
+.position-relative {
+  position: relative;
+}
+.delete-button {
+  color: #e60000;
+  position: absolute;
+  top: 3px;
+  right: 10px;
+}
+.row-width {
+  width:100%
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.counter {
+  margin: 2px;
+  font-size: 1.2rem;
 }
 
